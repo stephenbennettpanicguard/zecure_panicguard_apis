@@ -230,7 +230,7 @@ jobs:
                       </div>
                   </div>
                   
-                  <a href="./allure-report/index.html" class="btn">📊 View Allure Report</a>
+                  <a href="allure-report/index.html" class="btn">📊 View Allure Report</a>
                   
                   <div class="footer">
                       <p>Automated testing powered by GitHub Actions</p>
