@@ -1,0 +1,39 @@
+{
+  "name": "pg21-mobile-api-tests",
+  "version": "1.0.0",
+  "description": "Playwright API Testing Framework for PG21 Mobile API",
+  "main": "index.js",
+  "scripts": {
+    "test": "node scripts/check-api-connectivity.js && playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:report": "playwright show-report",
+    "test:skip-api": "SKIP_API_TESTS=true playwright test",
+    "credentials:check": "node scripts/credential-manager.js check",
+    "credentials:update": "node scripts/credential-manager.js update",
+    "credentials:validate": "node scripts/credential-manager.js validate",
+    "token:update": "node scripts/credential-manager.js token",
+    "token:refresh": "node scripts/credential-manager.js refresh",
+    "allure:generate": "allure generate ./allure-results --clean -o ./allure-report",
+    "allure:open": "allure open ./allure-report",
+    "allure:serve": "allure serve ./allure-results"
+  },
+  "keywords": [
+    "playwright",
+    "api-testing",
+    "typescript",
+    "allure"
+  ],
+  "author": "Stephen Bennett",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.48.2",
+    "@types/node": "^22.10.2",
+    "allure-commandline": "^2.32.1",
+    "allure-playwright": "^3.0.3",
+    "dotenv": "^16.4.7",
+    "typescript": "^5.7.2"
+  }
+}
+

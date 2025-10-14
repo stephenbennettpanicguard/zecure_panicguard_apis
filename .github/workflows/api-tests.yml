@@ -1,0 +1,292 @@
+name: API Tests with Allure Report
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  schedule:
+    # Run every hour
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  test:
+    name: Run API Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Create .env file
+        run: |
+          echo "BASE_URL=https://zecure.panicguard.center" >> .env
+          echo "API_BASE_URL=https://zecure.panicguard.center/api" >> .env
+          echo "TEST_USERNAME=${{ secrets.TEST_USERNAME || 'stephen.bennett+TestAccount@panicguard.com' }}" >> .env
+          echo "TEST_PASSWORD=${{ secrets.TEST_PASSWORD || 'password123!' }}" >> .env
+          echo "TEST_PIN=${{ secrets.TEST_PIN || '0408' }}" >> .env
+          echo "TEST_MOBILE_NUMBER=+380634534234" >> .env
+          echo "TEST_EMAIL=test@asd.com" >> .env
+          echo "DEVICE_PLATFORM=iphone" >> .env
+          echo "APP_VERSION=3.2" >> .env
+          echo "HEADLESS=true" >> .env
+          echo "TIMEOUT=30000" >> .env
+          echo "RETRIES=2" >> .env
+
+      - name: Run Playwright tests
+        run: npm test
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+
+      - name: Upload Allure results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results/
+          retention-days: 30
+
+  report:
+    name: Generate and Deploy Allure Report
+    runs-on: ubuntu-latest
+    needs: test
+    if: always()
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Allure results
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results
+
+      - name: Get Allure history
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Setup Allure report
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        with:
+          allure_results: allure-results
+          allure_history: allure-history
+          keep_reports: 20
+
+      - name: Generate timestamp
+        id: timestamp
+        run: echo "timestamp=$(date +'%Y-%m-%d %H:%M:%S UTC')" >> "$GITHUB_OUTPUT"
+
+      - name: Create index.html with report link
+        run: |
+          mkdir -p public
+          cat > public/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>PG21 API Test Reports</title>
+              <style>
+                  * {
+                      margin: 0;
+                      padding: 0;
+                      box-sizing: border-box;
+                  }
+                  body {
+                      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                      min-height: 100vh;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      padding: 20px;
+                  }
+                  .container {
+                      background: white;
+                      border-radius: 20px;
+                      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                      padding: 60px 40px;
+                      max-width: 600px;
+                      width: 100%;
+                      text-align: center;
+                  }
+                  h1 {
+                      color: #333;
+                      font-size: 2.5em;
+                      margin-bottom: 20px;
+                  }
+                  .subtitle {
+                      color: #666;
+                      font-size: 1.2em;
+                      margin-bottom: 40px;
+                  }
+                  .info {
+                      background: #f8f9fa;
+                      border-radius: 10px;
+                      padding: 20px;
+                      margin-bottom: 30px;
+                  }
+                  .info-item {
+                      display: flex;
+                      justify-content: space-between;
+                      margin: 10px 0;
+                      color: #555;
+                  }
+                  .info-label {
+                      font-weight: bold;
+                  }
+                  .btn {
+                      display: inline-block;
+                      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                      color: white;
+                      text-decoration: none;
+                      padding: 15px 40px;
+                      border-radius: 50px;
+                      font-size: 1.1em;
+                      font-weight: bold;
+                      transition: transform 0.3s ease, box-shadow 0.3s ease;
+                      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                  }
+                  .btn:hover {
+                      transform: translateY(-2px);
+                      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+                  }
+                  .footer {
+                      margin-top: 30px;
+                      color: #999;
+                      font-size: 0.9em;
+                  }
+                  .status {
+                      display: inline-block;
+                      padding: 5px 15px;
+                      border-radius: 20px;
+                      font-size: 0.9em;
+                      font-weight: bold;
+                  }
+                  .status.success {
+                      background: #d4edda;
+                      color: #155724;
+                  }
+              </style>
+          </head>
+          <body>
+              <div class="container">
+                  <h1>🧪 PG21 API Test Reports</h1>
+                  <p class="subtitle">Automated API Testing with Playwright & Allure</p>
+                  
+                  <div class="info">
+                      <div class="info-item">
+                          <span class="info-label">Last Run:</span>
+                          <span>${{ steps.timestamp.outputs.timestamp }}</span>
+                      </div>
+                      <div class="info-item">
+                          <span class="info-label">Workflow:</span>
+                          <span>${{ github.workflow }}</span>
+                      </div>
+                      <div class="info-item">
+                          <span class="info-label">Run Number:</span>
+                          <span>#${{ github.run_number }}</span>
+                      </div>
+                      <div class="info-item">
+                          <span class="info-label">Branch:</span>
+                          <span>${{ github.ref_name }}</span>
+                      </div>
+                  </div>
+                  
+                  <a href="./allure-report/index.html" class="btn">📊 View Allure Report</a>
+                  
+                  <div class="footer">
+                      <p>Automated testing powered by GitHub Actions</p>
+                      <p>Tests run hourly to ensure API reliability</p>
+                  </div>
+              </div>
+          </body>
+          </html>
+          EOF
+
+      - name: Copy Allure report to public
+        run: |
+          cp -r allure-history public/allure-report
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    needs: report
+    if: always()
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Comment PR with report link
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '## 🧪 Test Report\n\n✅ API tests completed!\n\n📊 [View Allure Report](${{ steps.deployment.outputs.page_url }})\n\n---\n*Automated comment by GitHub Actions*'
+            })
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## 🎉 Test Execution Complete!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📊 **Allure Report URL:** ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🔗 **Direct Links:**" >> $GITHUB_STEP_SUMMARY
+          echo "- [Main Dashboard](${{ steps.deployment.outputs.page_url }})" >> $GITHUB_STEP_SUMMARY
+          echo "- [Allure Report](${{ steps.deployment.outputs.page_url }}allure-report/)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "⏰ **Next scheduled run:** In 1 hour" >> $GITHUB_STEP_SUMMARY
+

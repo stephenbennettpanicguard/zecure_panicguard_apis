@@ -1,0 +1,3549 @@
+{
+	"info": {
+		"_postman_id": "c24c61bf-d00e-4caa-98ce-32e2971b18f3",
+		"name": "PG21 Mobile Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24871315",
+		"_collection_link": "https://grey-resonance-375833.postman.co/workspace/PG-Workspace~8daa1391-0499-4435-9475-221cc2125d85/collection/24871315-c24c61bf-d00e-4caa-98ce-32e2971b18f3?action=share&source=collection_link&creator=24871315"
+	},
+	"item": [
+		{
+			"name": "Unauthorized",
+			"item": [
+				{
+					"name": "Get App Settings",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "arc_id",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{mobileApiBaseUrl}}/unauthorized/app_settings",
+							"host": [
+								"{{mobileApiBaseUrl}}"
+							],
+							"path": [
+								"unauthorized",
+								"app_settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "test@asd.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{mobileApiBaseUrl}}/unauthorized/reset_password",
+							"host": [
+								"{{mobileApiBaseUrl}}"
+							],
+							"path": [
+								"unauthorized",
+								"reset_password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Credentials Forgotten",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "type",
+									"value": "1",
+									"description": "1 - forgot email, 2 - forgot password, 3 - forgot PIN",
+									"type": "text"
+								},
+								{
+									"key": "identifier",
+									"value": "test@asd.com",
+									"description": "email or mobile_number",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{mobileApiBaseUrl}}/unauthorized/credentials_forgotten",
+							"host": [
+								"{{mobileApiBaseUrl}}"
+							],
+							"path": [
+								"unauthorized",
+								"credentials_forgotten"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Is Email Taken",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "test@asd.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{mobileApiBaseUrl}}/unauthorized/email_taken",
+							"host": [
+								"{{mobileApiBaseUrl}}"
+							],
+							"path": [
+								"unauthorized",
+								"email_taken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "data[firstname]",
+									"value": "Anton",
+									"type": "text"
+								},
+								{
+									"key": "data[lastname]",
+									"value": "Berx",
+									"type": "text"
+								},
+								{
+									"key": "data[mobile_country_code]",
+									"value": "+380",
+									"type": "text"
+								},
+								{
+									"key": "data[mobile_number]",
+									"value": "983452356",
+									"type": "text"
+								},
+								{
+									"key": "data[dob][0]",
+									"value": "1984",
+									"type": "text"
+								},
+								{
+									"key": "data[dob][1]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "data[dob][2]",
+									"value": "7",
+									"type": "text"
+								},
+								{
+									"key": "data[email]",
+									"value": "test@asdf.com",
+									"type": "text"
+								},
+								{
+									"key": "data[password]",
+									"value": "wert12D_46fkJK",
+									"type": "text"
+								},
+								{
+									"key": "data[password2]",
+									"value": "wert12D_46fkJK",
+									"type": "text"
+								},
+								{
+									"key": "data[agree_to_terms]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "data[coupon_code]",
+									"value": "ASDFGH",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "data[initial_payment_plan_arc_id]",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "data[profile_language_id]",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "data[pin]",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "data[emergency_contacts][0][name]",
+									"value": "Alex Boldon",
+									"type": "text"
+								},
+								{
+									"key": "data[emergency_contacts][0][email]",
+									"value": "alex@asd.com",
+									"type": "text"
+								},
+								{
+									"key": "data[emergency_contacts][0][mobile_number]",
+									"value": "+380133423456",
+									"type": "text"
+								},
+								{
+									"key": "data[emergency_contacts][0][mobile_country_code]",
+									"value": "+380",
+									"type": "text"
+								},
+								{
+									"key": "data[emergency_contacts][1][name]",
+									"value": "Piter Pen",
+									"type": "text"
+								},
+								{
+									"key": "data[emergency_contacts][1][email]",
+									"value": "pp@asd.com",
+									"type": "text"
+								},
+								{
+									"key": "data[emergency_contacts][1][mobile_number]",
+									"value": "+380581100015",
+									"type": "text"
+								},
+								{
+									"key": "data[emergency_contacts][1][mobile_country_code]",
+									"value": "+380",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{mobileApiBaseUrl}}/unauthorized/user_register",
+							"host": [
+								"{{mobileApiBaseUrl}}"
+							],
+							"path": [
+								"unauthorized",
+								"user_register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Subscription Payment Stripe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "payment_plan_id",
+									"value": "9",
+									"type": "text"
+								},
+								{
+									"key": "card_token_id",
+									"value": "card_1GDBHqJ0VuJuwzVpkUPReXgn",
+									"type": "text"
+								},
+								{
+									"key": "subscription_period",
+									"value": "1",
+									"description": "PERIOD_MONTLY = 1\n\tPERIOD_QUARTERLY = 2\n\tPERIOD_YEARLY = 3\n\tPERIOD_DAILY_1 = 4\n\tPERIOD_DAILY_7 = 5\n\tPERIOD_DAILY_14 = 6",
+									"type": "text"
+								},
+								{
+									"key": "subscription_currency_code",
+									"value": "GBP",
+									"type": "text"
+								},
+								{
+									"key": "subscription_count_users",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "oneTimePayment",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "coupon_code",
+									"value": "ERTGDS",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "subscription_id",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{mobileApiBaseUrl}}/unauthorized/user/:id/userRegisterPaymentStripe",
+							"host": [
+								"{{mobileApiBaseUrl}}"
+							],
+							"path": [
+								"unauthorized",
+								"user",
+								":id",
+								"userRegisterPaymentStripe"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "327441"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Register Add Invite Users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "users[0][firstname]",
+									"value": "Lider",
+									"type": "text"
+								},
+								{
+									"key": "users[0][lastname]",
+									"value": "Next",
+									"type": "text"
+								},
+								{
+									"key": "users[0][email]",
+									"value": "next@lider.co",
+									"type": "text"
+								},
+								{
+									"key": "users[0][mobile_country_id]",
+									"value": "+380",
+									"description": "country => ident2 | code",
+									"type": "text"
+								},
+								{
+									"key": "users[0][mobile_number]",
+									"value": "631112345",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{mobileApiBaseUrl}}/unauthorized/user/:id/userRegisterAddInviteUsers",
+							"host": [
+								"{{mobileApiBaseUrl}}"
+							],
+							"path": [
+								"unauthorized",
+								"user",
+								":id",
+								"userRegisterAddInviteUsers"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "327441"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mobile Number - Send Verification Sms",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "mobile_number",
+									"value": "+380634534234",
+									"type": "text"
+								},
+								{
+									"key": "appSmsHash",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{mobileApiBaseUrl}}/unauthorized/mobileNumber/sendVerificationSms",
+							"host": [
+								"{{mobileApiBaseUrl}}"
+							],
+							"path": [
+								"unauthorized",
+								"mobileNumber",
+								"sendVerificationSms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mobile Number - Verify By Code",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "verification_id",
+									"value": "21",
+									"type": "text"
+								},
+								{
+									"key": "verification_code",
+									"value": "ASDERT",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{mobileApiBaseUrl}}/unauthorized/mobileNumber/verifyByCode",
+							"host": [
+								"{{mobileApiBaseUrl}}"
+							],
+							"path": [
+								"unauthorized",
+								"mobileNumber",
+								"verifyByCode"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Coupon Code",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "code",
+									"value": "ABDERAS",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{mobileApiBaseUrl}}/unauthorized/getCouponCode",
+							"host": [
+								"{{mobileApiBaseUrl}}"
+							],
+							"path": [
+								"unauthorized",
+								"getCouponCode"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Profile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "data[hash]",
+									"value": "e9eba958839efe7218d55c0dab3df081",
+									"type": "text"
+								},
+								{
+									"key": "data[email]",
+									"value": "test@asdfg.com",
+									"type": "text"
+								},
+								{
+									"key": "data[mobile_number]",
+									"value": "+380983452356",
+									"type": "text"
+								},
+								{
+									"key": "data[mobile_country_id]",
+									"value": "219",
+									"type": "text"
+								},
+								{
+									"key": "data[dob][0]",
+									"value": "1984",
+									"type": "text"
+								},
+								{
+									"key": "data[dob][1]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "data[dob][2]",
+									"value": "8",
+									"type": "text"
+								},
+								{
+									"key": "data[pin]",
+									"value": "0999",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "data[duress_pin]",
+									"value": "0123",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "data[level1_inactivity_timeout]",
+									"value": "300",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "data[level2_inactivity_timeout]",
+									"value": "300",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "data[tracking_level]",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "avatar",
+									"description": "file",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "app_buttons[0]",
+									"value": "contacts",
+									"type": "text"
+								},
+								{
+									"key": "app_buttons[1]",
+									"value": "map",
+									"type": "text"
+								},
+								{
+									"key": "skills[medical][0]",
+									"value": "First Aid",
+									"type": "text"
+								},
+								{
+									"key": "skills[tactical][0]",
+									"value": "Armed Lethal",
+									"type": "text"
+								},
+								{
+									"key": "skills[tactical][1]",
+									"value": "Unarmed Combat",
+									"type": "text"
+								},
+								{
+									"key": "af[Bermuda]",
+									"value": "Lorem ipsum",
+									"type": "text"
+								},
+								{
+									"key": "af[Larida]",
+									"value": "Option1",
+									"type": "text"
+								},
+								{
+									"key": "af[Mira]",
+									"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{mobileApiBaseUrl}}/unauthorized/user/:id/profile_update",
+							"host": [
+								"{{mobileApiBaseUrl}}"
+							],
+							"path": [
+								"unauthorized",
+								"user",
+								":id",
+								"profile_update"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "327441"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authorized",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "Logout",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user/logout",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Profile",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user/profile",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Handset Stolen",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user/handset_stolen",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user",
+										"handset_stolen"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get App Cache",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user/app_cache",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user",
+										"app_cache"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get App Settings",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user/app_settings",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user",
+										"app_settings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Orders History",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user/ordersHistory",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user",
+										"ordersHistory"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Personal Data Download",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user/personalDataDownload",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user",
+										"personalDataDownload"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Supported Devices",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user/supported_devices",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user",
+										"supported_devices"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cancel Subscription",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user/cancelSubscription",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user",
+										"cancelSubscription"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List Devices",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user/device",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user",
+										"device"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Account Info",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user/requestAccountInfo",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user",
+										"requestAccountInfo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Device",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user/device/:id",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user",
+										"device",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cancel Trial Timer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user/cancel_trial_timer",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user",
+										"cancel_trial_timer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Device",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "My Device",
+											"type": "text"
+										},
+										{
+											"key": "device_type_id",
+											"value": "190",
+											"type": "text"
+										},
+										{
+											"key": "configuration[ident]",
+											"value": "123456789012",
+											"type": "text"
+										},
+										{
+											"key": "configuration[phone]",
+											"value": "+380354325612",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user/addDevice",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user",
+										"addDevice"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Review",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "text",
+											"value": "My Review",
+											"type": "text"
+										},
+										{
+											"key": "rate",
+											"value": "4",
+											"description": "0 | 1 | 2 | 3 | 4 | 5",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user/addReview",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user",
+										"addReview"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Account",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user/deleteAccount",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user",
+										"deleteAccount"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Account Cancel",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user/deleteAccountCancel",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user",
+										"deleteAccountCancel"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Password Per Prompt",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "password",
+											"value": "hjg_67Fgs#$dxcfd",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user/password",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user",
+										"password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Mobile Number",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"mobile_country_code\": \"+380\",\r\n    \"mobile_country_code_2_letters\": null,\r\n    \"mobile_number\": \"+380564321234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user/mobile",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user",
+										"mobile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update App Cache",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"test\":\"dffdsf\",\"info\":\"dsfsdfsdfsd sdfsdfsdfsdf\"}",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user/app_cache",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user",
+										"app_cache"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Profile",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"labuda@asdf.com\",\r\n    \"mobile_number\": \"+380564321234\",\r\n    \"mobile_country_code\": \"+380\",\r\n    \"mobile_country_code_2_letters\": \"\",\r\n    \"pin\": \"0999\",\r\n    \"password\": \"\",\r\n    \"company_name\": \"\",\r\n    \"info\": \"\",\r\n    \"address1\": \"\",\r\n    \"address2\": \"\",\r\n    \"town\": \"\",\r\n    \"region\": \"\",\r\n    \"postcode\": \"\",\r\n    \"gender\": \"1\",\r\n    \"gender_description\": \"\",\r\n    \"height\": \"\",\r\n    \"hair_colour\": \"\",\r\n    \"eye_colour\": \"\",\r\n    \"build\": \"\",\r\n    \"ethnicity\": \"\",\r\n    \"nationality\": \"\",\r\n    \"native_language\": \"\",    \r\n    \"escalation_policy\": \"\",   \r\n    \"medical_info\": \"\",    \r\n    \"vehicle_registration\": \"\",    \r\n    \"vehicle_make\": \"\",    \r\n    \"vehicle_model\": \"\",    \r\n    \"vehicle_colour\": \"\",    \r\n    \"medical_deseases\": \"\",    \r\n    \"medical_symptoms\": \"\",    \r\n    \"notes\": \"\",    \r\n    \"additional_fields\": \"{\\\"Bermuda\\\":\\\"Lorem ipsum\\\",\\\"Larida\\\":\\\"Option1\\\",\\\"Mira\\\":\\\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\\\"}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user/profile",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Device Token",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"device_messaging_id\": \"fsdffsd42432432\",\r\n    \"device_platform\": \"android\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user/device_token",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user",
+										"device_token"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Event",
+					"item": [
+						{
+							"name": "Location",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "latitude",
+											"value": "51.50722232",
+											"type": "text"
+										},
+										{
+											"key": "longitude",
+											"value": "-0.1275343123",
+											"type": "text"
+										},
+										{
+											"key": "altitude",
+											"value": "125",
+											"type": "text"
+										},
+										{
+											"key": "accuracy",
+											"value": "10",
+											"type": "text"
+										},
+										{
+											"key": "type",
+											"value": "1",
+											"description": "TYPE_GPS = 1\nTYPE_NETWORK = 2\nTYPE_USER_DEVICE = 3",
+											"type": "text"
+										},
+										{
+											"key": "ghost_mode",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "device_utc_time",
+											"value": "2024-03-13 21:23:00",
+											"description": "datetime Y-m-d H:i:s",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/location",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"location"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Alert (Change Type)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "event_type_id",
+											"value": "2",
+											"description": "TYPE_ALERT = 2\nTYPE_DANGER_ALERT = 3",
+											"type": "text"
+										},
+										{
+											"key": "type_trigger",
+											"value": "1",
+											"description": "TYPE_TRIGGER_PRESS_AND_HOLD = 1\nTYPE_TRIGGER_SHAKE = 2\nTYPE_TRIGGER_MANDOWN = 3\nTYPE_TRIGGER_BUTTON = 4\nTYPE_TRIGGER_MEETING = 5\nTYPE_TRIGGER_JOURNEY = 6\nTYPE_TRIGGER_DURESS_PIN = 7\nTYPE_TRIGGER_DURESS_VSN_BUTTON = 8\nTYPE_TRIGGER_DURESS_SOFT_ALERT = 9\n\nTYPE_TRIGGER_FLIC = 10\nTYPE_TRIGGER_FLIC_2 = 11",
+											"type": "text"
+										},
+										{
+											"key": "device_utc_time",
+											"value": "2024-03-24 12:30:00",
+											"description": "datetime Y-m-d H:i:s",
+											"type": "text"
+										},
+										{
+											"key": "testAlert",
+											"value": "",
+											"description": "1 | 0",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/type",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"type"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Device State",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "gpsOn",
+											"value": "1",
+											"description": "0 | 1",
+											"type": "text"
+										},
+										{
+											"key": "wifiOn",
+											"value": "0",
+											"description": "0 | 1",
+											"type": "text"
+										},
+										{
+											"key": "batteryLevel",
+											"value": "56",
+											"description": "0 - 100",
+											"type": "text"
+										},
+										{
+											"key": "buttonConnected",
+											"value": "0",
+											"description": "0 | 1",
+											"type": "text"
+										},
+										{
+											"key": "buttonBatteryLevel",
+											"value": "45",
+											"description": "0 - 100",
+											"type": "text"
+										},
+										{
+											"key": "networkConnection",
+											"value": "2",
+											"description": "0 | 1 | 2 | 3 | 4",
+											"type": "text"
+										},
+										{
+											"key": "powerSaveMode",
+											"value": "0",
+											"description": "0 | 1",
+											"type": "text"
+										},
+										{
+											"key": "wifiScanResults",
+											"value": "[{\"bssid\":\"48:3e:5e:21:6e:f0\",\"signalStrength\":-84,\"ssid\":\"sercommBA1010\"}]",
+											"description": "json string",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/deviceState",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"deviceState"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Chat Channel",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/chatChannel",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"chatChannel"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Meeting (create)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "notes",
+											"value": "Test notes",
+											"type": "text"
+										},
+										{
+											"key": "timer",
+											"value": "1500",
+											"description": "seconds",
+											"type": "text"
+										},
+										{
+											"key": "custom_meeting_checkbox",
+											"value": "{\"checkbox\":\"1\",\"header\":\"Test header\",\"description\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\", \"label\":\"Test label\"}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/meeting/create",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"meeting",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Journey (start)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "mode",
+											"value": "",
+											"description": "MODE_WALKING = 1\nMODE_BICYCLE = 2\nMODE_VEHICLE = 3\nMODE_TRAIN = 4",
+											"type": "text"
+										},
+										{
+											"key": "notes",
+											"value": "Test notes",
+											"type": "text"
+										},
+										{
+											"key": "start_label",
+											"value": "",
+											"description": "seconds",
+											"type": "text"
+										},
+										{
+											"key": "start_latitude",
+											"value": "50.2323232",
+											"type": "text"
+										},
+										{
+											"key": "start_longitude",
+											"value": "28.32323232",
+											"type": "text"
+										},
+										{
+											"key": "start_address",
+											"value": "London, st. Luna, 45",
+											"type": "text"
+										},
+										{
+											"key": "end_label",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "end_latitude",
+											"value": "50.2311232",
+											"type": "text"
+										},
+										{
+											"key": "end_longitude",
+											"value": "28.32321132",
+											"type": "text"
+										},
+										{
+											"key": "end_address",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "destination_distance_eta_meters",
+											"value": "10",
+											"type": "text"
+										},
+										{
+											"key": "destination_time_eta_seconds",
+											"value": "50",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/journey/start",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"journey",
+										"start"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Meeting (update)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "notes",
+											"value": "Test notes",
+											"type": "text"
+										},
+										{
+											"key": "timer",
+											"value": "3500",
+											"description": "seconds",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/meeting/update",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"meeting",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Checkin",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "latitude",
+											"value": "50.2323232",
+											"type": "text"
+										},
+										{
+											"key": "longitude",
+											"value": "28.32323232",
+											"type": "text"
+										},
+										{
+											"key": "location_address",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/checkin/create",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"checkin",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Shared Location",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "duration",
+											"value": "3200",
+											"description": "seconds",
+											"type": "text"
+										},
+										{
+											"key": "recipients[0][name]",
+											"value": "Lark Briston",
+											"type": "text"
+										},
+										{
+											"key": "recipients[0][email]",
+											"value": "lark@briston.com",
+											"type": "text"
+										},
+										{
+											"key": "recipients[0][phone]",
+											"value": "+380942342342",
+											"type": "text"
+										},
+										{
+											"key": "recipients[0][device_platform]",
+											"value": "android",
+											"type": "text"
+										},
+										{
+											"key": "recipients[0][device_messaging_id]",
+											"value": "fsdffsd42432432",
+											"type": "text"
+										},
+										{
+											"key": "recipients[1][name]",
+											"value": "Denica Lisato",
+											"type": "text"
+										},
+										{
+											"key": "recipients[1][email]",
+											"value": "denlis@abs.com",
+											"type": "text"
+										},
+										{
+											"key": "recipients[1][phone]",
+											"value": "+380942342300",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/sharedLocation",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"sharedLocation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Shared Location Recipient",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/sharedLocationRecipient/:id/delete",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"sharedLocationRecipient",
+										":id",
+										"delete"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "67"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Shared Location Recipient",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "duration",
+											"value": "1000",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/sharedLocationRecipient/:id/update",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"sharedLocationRecipient",
+										":id",
+										"update"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "12"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Append To Shared Location",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"duration\": 7200, \r\n    \"recipients\": [\r\n        {\"name\": \"Lina Krest\", \"email\": \"lina@krest.com\", \"phone\": \"+380942372342\", \"device_platform\": \"android\", \"device_messaging_id\": \"asdsd42432432\"},\r\n        {\"name\": \"Ten Turing\", \"email\": \"ten@tur.com\", \"phone\": \"+380942345413\"}\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/sharedLocation/:id",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"sharedLocation",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Dispatch Guard",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "dispatch_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "notes",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/dispatch/:action",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"dispatch",
+										":action"
+									],
+									"variable": [
+										{
+											"key": "action",
+											"value": "3",
+											"description": "STATUS_ACCEPTED = 1\nSTATUS_REJECTED = 2\nSTATUS_CLOSED = 3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Meeting (cancel)",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/meeting/cancel",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"meeting",
+										"cancel"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Checkout",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/checkin/checkout",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"checkin",
+										"checkout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Shared Location",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/sharedLocation/:id",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"sharedLocation",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "25"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get My Shared Location",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/mySharedLocation",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"mySharedLocation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Shared Location",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/sharedLocation/:id",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"sharedLocation",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "25"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Chat Channel User Data",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "sid",
+											"value": "CH55555852ae50497aba21451ee790f50e",
+											"type": "text"
+										},
+										{
+											"key": "identity",
+											"value": "User_2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/chatChannel/user",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"chatChannel",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Chat Channel",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/chatChannel",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"chatChannel"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Test Alert",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/testAlert",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"testAlert"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Dispatch Alert",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/dispatchAlert/:alertId",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"dispatchAlert",
+										":alertId"
+									],
+									"variable": [
+										{
+											"key": "alertId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Close Alert",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/closeAlert",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"closeAlert"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Backup",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/requestBackup",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"requestBackup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Journey (end)",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/journey/end",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"journey",
+										"end"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Journey (cancel)",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/event/journey/cancel",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"event",
+										"journey",
+										"cancel"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User Places",
+					"item": [
+						{
+							"name": "Get User Places",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user_place",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user_place"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create User Place",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Place",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "Zhytomyr, vul. Rjsmonavtiv 18/9",
+											"type": "text"
+										},
+										{
+											"key": "latitude",
+											"value": "12.44334378",
+											"type": "text"
+										},
+										{
+											"key": "longitude",
+											"value": "8.56563",
+											"type": "text"
+										},
+										{
+											"key": "radius",
+											"value": "10",
+											"type": "text"
+										},
+										{
+											"key": "avatar",
+											"value": "null",
+											"description": "file -> data:image/jpg;base64",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user_place",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user_place"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User Place",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"New Place\",\r\n    \"address\": \"7B Prictor Street, Papakura, Auckland 2110, New Zealand\",\r\n    \"latitude\": \"11.4433490923432\", \r\n    \"longitude\": \"18.5656334234234\",\r\n    \"radius\": 5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user_place/:id",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user_place",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "18"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User Place",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user_place/:id",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user_place",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "18"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Safe Places",
+					"item": [
+						{
+							"name": "Get Safe Places",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/safe_places",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"safe_places"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Session States",
+					"item": [
+						{
+							"name": "Get Session State Data",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/sessionState/:area",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"sessionState",
+										":area"
+									],
+									"variable": [
+										{
+											"key": "area",
+											"value": "signals",
+											"description": "signals"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Subusers",
+					"item": [
+						{
+							"name": "Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "username",
+											"value": "brix",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "brix_Aasd.com12",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/subuser/auth",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"subuser",
+										"auth"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "user_id",
+											"value": "327340",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/subuser/signout",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"subuser",
+										"signout"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User Emergency Contact Groups",
+					"item": [
+						{
+							"name": "Create User Emergency Contact Group",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Test Group",
+											"type": "text"
+										},
+										{
+											"key": "is_active",
+											"value": "1",
+											"description": "1 | 0",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user_emergency_contact_group",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user_emergency_contact_group"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User Emergency Contact Groups",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user_emergency_contact_group",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user_emergency_contact_group"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User Emergency Contact Group",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"New Group\",\r\n    \"is_active\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user_emergency_contact_group/:id",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user_emergency_contact_group",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "22"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User Emergency Contact Group",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user_emergency_contact_group/:id",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user_emergency_contact_group",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "22"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User Emergency Contacts",
+					"item": [
+						{
+							"name": "Create User Emergency Contact",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "group_id",
+											"value": "1,2",
+											"description": "group ids list",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Lires Dina",
+											"type": "text"
+										},
+										{
+											"key": "firstname",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "lastname",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "lires@asdf.com",
+											"type": "text"
+										},
+										{
+											"key": "mobile_number",
+											"value": "+380653423123",
+											"type": "text"
+										},
+										{
+											"key": "mobile_country_code",
+											"value": "+380",
+											"type": "text"
+										},
+										{
+											"key": "avatar",
+											"value": "null",
+											"description": "file -> data:image/jpg;base64",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user_emergency_contact",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user_emergency_contact"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User Emergency Contact",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"group_id\": \"1,2\",\r\n    \"name\": \"Lara Treck\",\r\n    \"email\": \"lara@tr.com\",\r\n    \"mobile_number\": \"+380654534123\", \r\n    \"mobile_country_code\": \"+380\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user_emergency_contact/:id",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user_emergency_contact",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "37"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User Emergency Contact",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user_emergency_contact/:id",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user_emergency_contact",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "37"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User Emergency Contacts",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user_emergency_contact",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user_emergency_contact"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User Documents",
+					"item": [
+						{
+							"name": "Get User Documents",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user_document",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user_document"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create User Document",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "arc_report_category_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "category",
+											"value": "2",
+											"description": "CATEGORY_REPORT = 1\nCATEGORY_WALLET = 2\nCATEGORY_CHECKIN = 3\nCATEGORY_MEDIA_LIBRARY = 4",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": "Test Report",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Test broken codes",
+											"type": "text"
+										},
+										{
+											"key": "latitude",
+											"value": "11.44334",
+											"type": "text"
+										},
+										{
+											"key": "longitude",
+											"value": "18.56563",
+											"type": "text"
+										},
+										{
+											"key": "is_anonymous",
+											"value": "0",
+											"description": "0 | 1",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"description": "file",
+											"type": "file",
+											"src": "/D:/Downloads/test_broken_codes_2023_11_28.csv"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user_document",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user_document"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User Document",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/user_document/:id",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"user_document",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Zones",
+					"item": [
+						{
+							"name": "Get Zones (Danger Zones)",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/zones",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"zones"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Invite Users",
+					"item": [
+						{
+							"name": "Get Invite Users",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/inviteUsers/list",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"inviteUsers",
+										"list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Invite User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "firstname",
+											"value": "Bred",
+											"type": "text"
+										},
+										{
+											"key": "lastname",
+											"value": "Peat",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "lasfg@asdf.com",
+											"type": "text"
+										},
+										{
+											"key": "mobile_country_code",
+											"value": "+380",
+											"description": "county code | ident2",
+											"type": "text"
+										},
+										{
+											"key": "mobile_country_id",
+											"value": "219",
+											"description": "country id",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "mobile_number",
+											"value": "+380653412345",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/inviteUsers",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"inviteUsers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Invite User",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstname\": \"Lara\",\r\n    \"lastname\": \"Treck\",\r\n    \"email\": \"lara@tr.com\",\r\n    \"mobile_country_code\": \"+380\",\r\n    \"mobile_number\": \"+380654534123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/inviteUsers/:id",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"inviteUsers",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "327443"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Invite User",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/inviteUsers/:id",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"inviteUsers",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "327443"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "File Upload",
+					"item": [
+						{
+							"name": "Upload file (avatar / evidence)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/D:/Downloads/video.mp4"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/file_upload/:entity/:field/:entity_id?eventHash=280243b41603dea1af9",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"file_upload",
+										":entity",
+										":field",
+										":entity_id"
+									],
+									"query": [
+										{
+											"key": "eventHash",
+											"value": "280243b41603dea1af9"
+										}
+									],
+									"variable": [
+										{
+											"key": "entity",
+											"value": "event",
+											"description": "user | event | event_dispatch"
+										},
+										{
+											"key": "field",
+											"value": "evidence",
+											"description": "for user => avatar | log\nfor event => evidence\nfor event_dispatch => evidence"
+										},
+										{
+											"key": "entity_id",
+											"value": "0",
+											"description": "optional"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User Avatar",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/file_upload/user/avatar",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"file_upload",
+										"user",
+										"avatar"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User Mobile App Messages",
+					"item": [
+						{
+							"name": "Get Messages",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/mobileAppMessages?limit=10&page=1&types=1,2",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"mobileAppMessages"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "types",
+											"value": "1,2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Messages Types List",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/mobileAppMessages/types",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"mobileAppMessages",
+										"types"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Message Status",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/mobileAppMessages/:id/status",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"mobileAppMessages",
+										":id",
+										"status"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Message Archived",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"archived\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mobileApiBaseUrl}}/mobileAppMessages/:id/archived",
+									"host": [
+										"{{mobileApiBaseUrl}}"
+									],
+									"path": [
+										"mobileAppMessages",
+										":id",
+										"archived"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "apikey",
+				"apikey": [
+					{
+						"key": "key",
+						"value": "Auth-token",
+						"type": "string"
+					},
+					{
+						"key": "value",
+						"value": "{{authToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Reports",
+			"item": [
+				{
+					"name": "Get Settings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mobileApiBaseUrl}}/reports/settings",
+							"host": [
+								"{{mobileApiBaseUrl}}"
+							],
+							"path": [
+								"reports",
+								"settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submit Report",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "arc_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "13",
+									"type": "text"
+								},
+								{
+									"key": "is_anonymous",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"description": "v2_category_id",
+									"type": "text"
+								},
+								{
+									"key": "device_fingerprint",
+									"value": "caa7670b-5985-4248-ba4a-8394efc93e6d",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "34.9748649",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "33.6800112",
+									"type": "text"
+								},
+								{
+									"key": "device_latitude",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "device_longitude",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "severity_level",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "additional_question_answers_json",
+									"value": "[{\"question\":\"How do you do?\",\"answer\":\"false\"}]",
+									"type": "text"
+								},
+								{
+									"key": "custom_created_at",
+									"value": "2021-10-05 12:20:54",
+									"description": "datetime Y-m-d H:i:s",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{mobileApiBaseUrl}}/reports/submit",
+							"host": [
+								"{{mobileApiBaseUrl}}"
+							],
+							"path": [
+								"reports",
+								"submit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Media",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"description": "file",
+									"type": "file",
+									"src": "/D:/Downloads/348669348_3552019281701344_6582244517283705065_n.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{mobileApiBaseUrl}}/reports/:reportId/media/upload",
+							"host": [
+								"{{mobileApiBaseUrl}}"
+							],
+							"path": [
+								"reports",
+								":reportId",
+								"media",
+								"upload"
+							],
+							"variable": [
+								{
+									"key": "reportId",
+									"value": "747"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth (api::login)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Auth-Token",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "durban",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "durban123_*FGsl",
+							"type": "text"
+						},
+						{
+							"key": "pin",
+							"value": "1111",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "mobile_number",
+							"value": "+380634534234",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "device_messaging_id",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "device_platform",
+							"value": "iphone",
+							"type": "text"
+						},
+						{
+							"key": "app_version",
+							"value": "3.2",
+							"type": "text"
+						},
+						{
+							"key": "latitude",
+							"value": "51.50722232",
+							"type": "text"
+						},
+						{
+							"key": "longitude",
+							"value": "-0.1275343123",
+							"type": "text"
+						},
+						{
+							"key": "altitude",
+							"value": "139.45",
+							"type": "text"
+						},
+						{
+							"key": "accuracy",
+							"value": "50",
+							"type": "text"
+						},
+						{
+							"key": "registrationId",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "otp_code",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "imei",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{mobileApiBaseUrl}}/auth",
+					"host": [
+						"{{mobileApiBaseUrl}}"
+					],
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Rest Api Request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Auth-Password",
+						"value": "DLss78s$sds_*sd13w",
+						"type": "text"
+					},
+					{
+						"key": "Arc-Id",
+						"value": "2",
+						"type": "text"
+					},
+					{
+						"key": "Hash",
+						"value": "ee4ff6fe215d9a2225f6e937df26fceeea518501",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"remote_user_id\": \"dazayka\",\r\n    \"email\": \"labuda@gmail.com\",\r\n    \"password\": \"123321\",\r\n    \"mobile_country_code\": \"UA\",\r\n    \"mobile_number\": \"+380131234561\",\r\n    \"dob\": \"1984-02-07\",\r\n    \"company_name\": \"Labuda\",\r\n    \"address1\": \"Adress line\",\r\n    \"address2\": \"Adress line 2\",\r\n    \"town\": \"Miroma\",\r\n    \"region\": \"Larsing\",\r\n    \"postcode\": \"10025\",\r\n    \"gender\": \"female\",\r\n    \"escalation_policy\": \"\",\r\n    \"medical_info\": \"\",\r\n    \"medical_diseases\": \"\",\r\n    \"medical_symptoms\": \"\",\r\n    \"vehicle_registration\": \"\",\r\n    \"vehicle_make\": \"\",\r\n    \"vehicle_model\": \"\",\r\n    \"vehicle_colour\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://optum.panicguard.center/rest/user/update",
+					"protocol": "https",
+					"host": [
+						"optum",
+						"panicguard",
+						"center"
+					],
+					"path": [
+						"rest",
+						"user",
+						"update"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "mobileApiBaseUrl",
+			"value": "{{baseUrl}}/api",
+			"type": "string"
+		}
+	]
+}
