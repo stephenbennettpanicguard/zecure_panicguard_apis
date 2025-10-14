@@ -66,6 +66,7 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+          if-no-files-found: ignore
 
       - name: Upload Allure results
         if: always()
@@ -74,6 +75,7 @@ jobs:
           name: allure-results
           path: allure-results/
           retention-days: 30
+          if-no-files-found: warn
 
   report:
     name: Generate and Deploy Allure Report
