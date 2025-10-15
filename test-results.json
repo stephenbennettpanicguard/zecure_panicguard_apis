@@ -1,0 +1,1581 @@
+🔍 Checking API connectivity to: https://zecure.panicguard.center/api
+✅ API is accessible - running tests normally
+📊 Status Code: 200
+⚡ Response Time: unknownms
+🔗 URL: https://zecure.panicguard.center/api
+
+{
+  "config": {
+    "configFile": "/Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/playwright.config.ts",
+    "rootDir": "/Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": "/Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/scripts/global-setup.js",
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 4
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "API Tests",
+        "name": "API Tests",
+        "testDir": "/Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.56.0",
+    "workers": 4,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "unauthorized/app-settings.spec.ts",
+      "file": "unauthorized/app-settings.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "App Settings API Tests",
+          "file": "unauthorized/app-settings.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Positive Tests",
+              "file": "unauthorized/app-settings.spec.ts",
+              "line": 23,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Get app settings should return configuration @positive @app-settings",
+                  "ok": true,
+                  "tags": [
+                    "positive",
+                    "app-settings"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 302,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:12.610Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "41daa642a4d302872429-459b80383842e0249848",
+                  "file": "unauthorized/app-settings.spec.ts",
+                  "line": 24,
+                  "column": 9
+                },
+                {
+                  "title": "Get app settings should return valid JSON @positive @app-settings",
+                  "ok": true,
+                  "tags": [
+                    "positive",
+                    "app-settings"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 155,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:12.639Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "41daa642a4d302872429-0e3cf88ea1ef3a3fb98e",
+                  "file": "unauthorized/app-settings.spec.ts",
+                  "line": 34,
+                  "column": 9
+                },
+                {
+                  "title": "Get app settings should return JSON content type @positive @app-settings",
+                  "ok": true,
+                  "tags": [
+                    "positive",
+                    "app-settings"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "passed",
+                          "duration": 160,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "Response content-type: application/json\n"
+                            },
+                            {
+                              "text": "Response status: \u001b[33m200\u001b[39m\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:12.626Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "41daa642a4d302872429-97e550fe905f5ef29ddb",
+                  "file": "unauthorized/app-settings.spec.ts",
+                  "line": 43,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Negative Tests",
+              "file": "unauthorized/app-settings.spec.ts",
+              "line": 62,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Get app settings with invalid method POST should fail @negative @app-settings",
+                  "ok": true,
+                  "tags": [
+                    "negative",
+                    "app-settings"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "passed",
+                          "duration": 144,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:12.626Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "41daa642a4d302872429-5aff58d54acca0026b9c",
+                  "file": "unauthorized/app-settings.spec.ts",
+                  "line": 63,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Edge Cases",
+              "file": "unauthorized/app-settings.spec.ts",
+              "line": 76,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Get app settings multiple times should return consistent data @edge @app-settings",
+                  "ok": true,
+                  "tags": [
+                    "edge",
+                    "app-settings"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "passed",
+                          "duration": 193,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:12.793Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "41daa642a4d302872429-8be1d721d749f8270fa1",
+                  "file": "unauthorized/app-settings.spec.ts",
+                  "line": 77,
+                  "column": 9
+                },
+                {
+                  "title": "Get app settings with invalid headers @edge @app-settings",
+                  "ok": true,
+                  "tags": [
+                    "edge",
+                    "app-settings"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "passed",
+                          "duration": 169,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:12.809Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "41daa642a4d302872429-4caf8a8670a089b1d8b0",
+                  "file": "unauthorized/app-settings.spec.ts",
+                  "line": 90,
+                  "column": 9
+                },
+                {
+                  "title": "Get app settings should handle non-JSON responses gracefully @edge @app-settings",
+                  "ok": true,
+                  "tags": [
+                    "edge",
+                    "app-settings"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 160,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "Raw response: {\"success\":true,\"data\":{\"language\":1,\"support_website\":\"https:\\/\\/appguide.zecure.ai\\/\",\"mobile_app_disclaimer\":null,\"mobile_app_disclaimer_confirmation\":null,\"enable_access_codes\":true,\"enable_travel...\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:12.817Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "41daa642a4d302872429-566612c961567d501a73",
+                  "file": "unauthorized/app-settings.spec.ts",
+                  "line": 105,
+                  "column": 9
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "unauthorized/password-recovery.spec.ts",
+      "file": "unauthorized/password-recovery.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Password Recovery API Tests",
+          "file": "unauthorized/password-recovery.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Positive Tests",
+              "file": "unauthorized/password-recovery.spec.ts",
+              "line": 12,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Reset password with valid email @positive @password",
+                  "ok": true,
+                  "tags": [
+                    "positive",
+                    "password"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 253,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:12.928Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "73acbc403eccca5ed048-fa4602b9b5d466af7baf",
+                  "file": "unauthorized/password-recovery.spec.ts",
+                  "line": 13,
+                  "column": 9
+                },
+                {
+                  "title": "Credentials forgotten - forgot email @positive @password",
+                  "ok": true,
+                  "tags": [
+                    "positive",
+                    "password"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 196,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:12.987Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "73acbc403eccca5ed048-6257609e432e4f5f65ea",
+                  "file": "unauthorized/password-recovery.spec.ts",
+                  "line": 21,
+                  "column": 9
+                },
+                {
+                  "title": "Credentials forgotten - forgot password @positive @password",
+                  "ok": true,
+                  "tags": [
+                    "positive",
+                    "password"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "passed",
+                          "duration": 139,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:12.987Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "73acbc403eccca5ed048-a04f5981d32d51944a86",
+                  "file": "unauthorized/password-recovery.spec.ts",
+                  "line": 30,
+                  "column": 9
+                },
+                {
+                  "title": "Credentials forgotten - forgot PIN @positive @password",
+                  "ok": true,
+                  "tags": [
+                    "positive",
+                    "password"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "passed",
+                          "duration": 184,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:12.996Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "73acbc403eccca5ed048-859455dab95530ef56df",
+                  "file": "unauthorized/password-recovery.spec.ts",
+                  "line": 39,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Negative Tests",
+              "file": "unauthorized/password-recovery.spec.ts",
+              "line": 49,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Reset password with invalid email format @negative @password",
+                  "ok": true,
+                  "tags": [
+                    "negative",
+                    "password"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "passed",
+                          "duration": 359,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:13.136Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "73acbc403eccca5ed048-db010216e080a4217db5",
+                  "file": "unauthorized/password-recovery.spec.ts",
+                  "line": 50,
+                  "column": 9
+                },
+                {
+                  "title": "Reset password with non-existent email @negative @password",
+                  "ok": true,
+                  "tags": [
+                    "negative",
+                    "password"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "passed",
+                          "duration": 363,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:13.188Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "73acbc403eccca5ed048-44c619826b7c4c94dd4b",
+                  "file": "unauthorized/password-recovery.spec.ts",
+                  "line": 60,
+                  "column": 9
+                },
+                {
+                  "title": "Reset password with empty email @negative @password",
+                  "ok": true,
+                  "tags": [
+                    "negative",
+                    "password"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 369,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:13.189Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "73acbc403eccca5ed048-33e080d0ababfb027a15",
+                  "file": "unauthorized/password-recovery.spec.ts",
+                  "line": 68,
+                  "column": 9
+                },
+                {
+                  "title": "Credentials forgotten with invalid type @negative @password",
+                  "ok": true,
+                  "tags": [
+                    "negative",
+                    "password"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 237,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:13.190Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "73acbc403eccca5ed048-71ca74616af3aa75586a",
+                  "file": "unauthorized/password-recovery.spec.ts",
+                  "line": 77,
+                  "column": 9
+                },
+                {
+                  "title": "Credentials forgotten with empty identifier @negative @password",
+                  "ok": true,
+                  "tags": [
+                    "negative",
+                    "password"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 166,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:13.433Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "73acbc403eccca5ed048-2b5f69cd2148f736e2e9",
+                  "file": "unauthorized/password-recovery.spec.ts",
+                  "line": 89,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Edge Cases",
+              "file": "unauthorized/password-recovery.spec.ts",
+              "line": 99,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Reset password with SQL injection @edge @password @security",
+                  "ok": true,
+                  "tags": [
+                    "edge",
+                    "password",
+                    "security"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "passed",
+                          "duration": 272,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:13.504Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "73acbc403eccca5ed048-03cffba56de1e53c2ecc",
+                  "file": "unauthorized/password-recovery.spec.ts",
+                  "line": 100,
+                  "column": 9
+                },
+                {
+                  "title": "Reset password with very long email @edge @password",
+                  "ok": true,
+                  "tags": [
+                    "edge",
+                    "password"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "passed",
+                          "duration": 391,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:13.557Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "73acbc403eccca5ed048-1abe2297d51d444711e7",
+                  "file": "unauthorized/password-recovery.spec.ts",
+                  "line": 108,
+                  "column": 9
+                },
+                {
+                  "title": "Credentials forgotten with mobile number identifier @edge @password",
+                  "ok": true,
+                  "tags": [
+                    "edge",
+                    "password"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 151,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:13.565Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "73acbc403eccca5ed048-f20622a14b5932b00c15",
+                  "file": "unauthorized/password-recovery.spec.ts",
+                  "line": 115,
+                  "column": 9
+                },
+                {
+                  "title": "Reset password multiple times in succession @edge @password",
+                  "ok": true,
+                  "tags": [
+                    "edge",
+                    "password"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 885,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:13.606Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "73acbc403eccca5ed048-d7808575fed884c43305",
+                  "file": "unauthorized/password-recovery.spec.ts",
+                  "line": 124,
+                  "column": 9
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "unauthorized/user-registration.spec.ts",
+      "file": "unauthorized/user-registration.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "User Registration API Tests",
+          "file": "unauthorized/user-registration.spec.ts",
+          "line": 6,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Positive Tests",
+              "file": "unauthorized/user-registration.spec.ts",
+              "line": 13,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Register new user with valid data should succeed @positive @registration",
+                  "ok": true,
+                  "tags": [
+                    "positive",
+                    "registration"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 262,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [
+                            {
+                              "text": "⚠️  API returned HTML instead of JSON. URL: https://zecure.panicguard.center/api/unauthorized/user_register, Status: 200, Content-Type: text/html; charset=UTF-8\n"
+                            },
+                            {
+                              "text": "HTML Preview: <!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <title>Sorry, the page you are looking for could not be found</title>\n    <meta name=\"description\" content=\"\" />\n    <meta name...\n"
+                            }
+                          ],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:13.725Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "4a18e870bcac35c379b9-a38e9e6809142f708201",
+                  "file": "unauthorized/user-registration.spec.ts",
+                  "line": 14,
+                  "column": 9
+                },
+                {
+                  "title": "Register user with emergency contacts @positive @registration",
+                  "ok": true,
+                  "tags": [
+                    "positive",
+                    "registration"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "passed",
+                          "duration": 272,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:13.786Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "4a18e870bcac35c379b9-d0873fce00cc2312e94f",
+                  "file": "unauthorized/user-registration.spec.ts",
+                  "line": 23,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Negative Tests",
+              "file": "unauthorized/user-registration.spec.ts",
+              "line": 40,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Register user with existing email should fail @negative @registration",
+                  "ok": true,
+                  "tags": [
+                    "negative",
+                    "registration"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "passed",
+                          "duration": 342,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [
+                            {
+                              "text": "⚠️  API returned HTML instead of JSON. URL: https://zecure.panicguard.center/api/unauthorized/user_register, Status: 200, Content-Type: text/html; charset=UTF-8\n"
+                            },
+                            {
+                              "text": "HTML Preview: <!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <title>Sorry, the page you are looking for could not be found</title>\n    <meta name=\"description\" content=\"\" />\n    <meta name...\n"
+                            }
+                          ],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:13.957Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "4a18e870bcac35c379b9-2c20008c156a5872739a",
+                  "file": "unauthorized/user-registration.spec.ts",
+                  "line": 41,
+                  "column": 9
+                },
+                {
+                  "title": "Register user with invalid email format @negative @registration",
+                  "ok": true,
+                  "tags": [
+                    "negative",
+                    "registration"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 478,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [
+                            {
+                              "text": "⚠️  API returned HTML instead of JSON. URL: https://zecure.panicguard.center/api/unauthorized/user_register, Status: 200, Content-Type: text/html; charset=UTF-8\n"
+                            },
+                            {
+                              "text": "HTML Preview: <!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <title>Sorry, the page you are looking for could not be found</title>\n    <meta name=\"description\" content=\"\" />\n    <meta name...\n"
+                            }
+                          ],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:13.995Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "4a18e870bcac35c379b9-8e6b4668cd7ed2530be3",
+                  "file": "unauthorized/user-registration.spec.ts",
+                  "line": 51,
+                  "column": 9
+                },
+                {
+                  "title": "Register user with mismatched passwords @negative @registration",
+                  "ok": true,
+                  "tags": [
+                    "negative",
+                    "registration"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "passed",
+                          "duration": 417,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [
+                            {
+                              "text": "⚠️  API returned HTML instead of JSON. URL: https://zecure.panicguard.center/api/unauthorized/user_register, Status: 200, Content-Type: text/html; charset=UTF-8\n"
+                            },
+                            {
+                              "text": "HTML Preview: <!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <title>Sorry, the page you are looking for could not be found</title>\n    <meta name=\"description\" content=\"\" />\n    <meta name...\n"
+                            }
+                          ],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:14.064Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "4a18e870bcac35c379b9-55d42d67bbdad8a01877",
+                  "file": "unauthorized/user-registration.spec.ts",
+                  "line": 61,
+                  "column": 9
+                },
+                {
+                  "title": "Register user without agreeing to terms @negative @registration",
+                  "ok": true,
+                  "tags": [
+                    "negative",
+                    "registration"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "passed",
+                          "duration": 300,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [
+                            {
+                              "text": "⚠️  API returned HTML instead of JSON. URL: https://zecure.panicguard.center/api/unauthorized/user_register, Status: 200, Content-Type: text/html; charset=UTF-8\n"
+                            },
+                            {
+                              "text": "HTML Preview: <!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <title>Sorry, the page you are looking for could not be found</title>\n    <meta name=\"description\" content=\"\" />\n    <meta name...\n"
+                            }
+                          ],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:14.307Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "4a18e870bcac35c379b9-aa30315aa9367e0f45fd",
+                  "file": "unauthorized/user-registration.spec.ts",
+                  "line": 72,
+                  "column": 9
+                },
+                {
+                  "title": "Register user with weak password @negative @registration",
+                  "ok": true,
+                  "tags": [
+                    "negative",
+                    "registration"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 285,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [
+                            {
+                              "text": "⚠️  API returned HTML instead of JSON. URL: https://zecure.panicguard.center/api/unauthorized/user_register, Status: 200, Content-Type: text/html; charset=UTF-8\n"
+                            },
+                            {
+                              "text": "HTML Preview: <!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <title>Sorry, the page you are looking for could not be found</title>\n    <meta name=\"description\" content=\"\" />\n    <meta name...\n"
+                            }
+                          ],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:14.480Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "4a18e870bcac35c379b9-af48747c1571606bd170",
+                  "file": "unauthorized/user-registration.spec.ts",
+                  "line": 82,
+                  "column": 9
+                },
+                {
+                  "title": "Register user with missing required fields @negative @registration",
+                  "ok": false,
+                  "tags": [
+                    "negative",
+                    "registration"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "failed",
+                          "duration": 5,
+                          "error": {
+                            "message": "Error: POST request failed for /unauthorized/user_register: apiRequestContext.post: Cannot read properties of undefined (reading 'on')",
+                            "stack": "Error: POST request failed for /unauthorized/user_register: apiRequestContext.post: Cannot read properties of undefined (reading 'on')\n    at ApiHelper.post (/Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/src/utils/api-helper.ts:190:13)\n    at UnauthorizedPage.userRegister (/Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/src/pages/unauthorized.page.ts:95:12)\n    at /Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/tests/unauthorized/user-registration.spec.ts:94:24",
+                            "location": {
+                              "file": "/Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/src/utils/api-helper.ts",
+                              "column": 13,
+                              "line": 190
+                            },
+                            "snippet": "   at ../src/utils/api-helper.ts:190\n\n  188 |       const errorMessage =\n  189 |         error instanceof Error ? error.message : String(error);\n> 190 |       throw new Error(`POST request failed for ${endpoint}: ${errorMessage}`);\n      |             ^\n  191 |     }\n  192 |   }\n  193 |"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/src/utils/api-helper.ts",
+                                "column": 13,
+                                "line": 190
+                              },
+                              "message": "Error: POST request failed for /unauthorized/user_register: apiRequestContext.post: Cannot read properties of undefined (reading 'on')\n\n   at ../src/utils/api-helper.ts:190\n\n  188 |       const errorMessage =\n  189 |         error instanceof Error ? error.message : String(error);\n> 190 |       throw new Error(`POST request failed for ${endpoint}: ${errorMessage}`);\n      |             ^\n  191 |     }\n  192 |   }\n  193 |\n    at ApiHelper.post (/Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/src/utils/api-helper.ts:190:13)\n    at UnauthorizedPage.userRegister (/Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/src/pages/unauthorized.page.ts:95:12)\n    at /Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/tests/unauthorized/user-registration.spec.ts:94:24"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:14.493Z",
+                          "annotations": [],
+                          "attachments": [],
+                          "errorLocation": {
+                            "file": "/Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/src/utils/api-helper.ts",
+                            "column": 13,
+                            "line": 190
+                          }
+                        },
+                        {
+                          "workerIndex": 4,
+                          "parallelIndex": 2,
+                          "status": "failed",
+                          "duration": 24,
+                          "error": {
+                            "message": "Error: POST request failed for /unauthorized/user_register: apiRequestContext.post: Cannot read properties of undefined (reading 'on')",
+                            "stack": "Error: POST request failed for /unauthorized/user_register: apiRequestContext.post: Cannot read properties of undefined (reading 'on')\n    at ApiHelper.post (/Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/src/utils/api-helper.ts:190:13)\n    at UnauthorizedPage.userRegister (/Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/src/pages/unauthorized.page.ts:95:12)\n    at /Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/tests/unauthorized/user-registration.spec.ts:94:24",
+                            "location": {
+                              "file": "/Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/src/utils/api-helper.ts",
+                              "column": 13,
+                              "line": 190
+                            },
+                            "snippet": "   at ../src/utils/api-helper.ts:190\n\n  188 |       const errorMessage =\n  189 |         error instanceof Error ? error.message : String(error);\n> 190 |       throw new Error(`POST request failed for ${endpoint}: ${errorMessage}`);\n      |             ^\n  191 |     }\n  192 |   }\n  193 |"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/src/utils/api-helper.ts",
+                                "column": 13,
+                                "line": 190
+                              },
+                              "message": "Error: POST request failed for /unauthorized/user_register: apiRequestContext.post: Cannot read properties of undefined (reading 'on')\n\n   at ../src/utils/api-helper.ts:190\n\n  188 |       const errorMessage =\n  189 |         error instanceof Error ? error.message : String(error);\n> 190 |       throw new Error(`POST request failed for ${endpoint}: ${errorMessage}`);\n      |             ^\n  191 |     }\n  192 |   }\n  193 |\n    at ApiHelper.post (/Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/src/utils/api-helper.ts:190:13)\n    at UnauthorizedPage.userRegister (/Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/src/pages/unauthorized.page.ts:95:12)\n    at /Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/tests/unauthorized/user-registration.spec.ts:94:24"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 1,
+                          "startTime": "2025-10-15T16:09:14.886Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "/Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/test-results/unauthorized-user-registra-f83f6-ields-negative-registration-API-Tests-retry1/trace.zip"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/Users/stephenbennett/Documents/github/Zecure_APIs/zecure_panicguard_apis/src/utils/api-helper.ts",
+                            "column": 13,
+                            "line": 190
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "4a18e870bcac35c379b9-7b321105e44a888becdc",
+                  "file": "unauthorized/user-registration.spec.ts",
+                  "line": 93,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Edge Cases",
+              "file": "unauthorized/user-registration.spec.ts",
+              "line": 101,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Register user with very long name @edge @registration",
+                  "ok": true,
+                  "tags": [
+                    "edge",
+                    "registration"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 247,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:14.503Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "4a18e870bcac35c379b9-79a09d9b22e5ff0ef8d3",
+                  "file": "unauthorized/user-registration.spec.ts",
+                  "line": 102,
+                  "column": 9
+                },
+                {
+                  "title": "Register user with special characters in name @edge @registration",
+                  "ok": true,
+                  "tags": [
+                    "edge",
+                    "registration"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "passed",
+                          "duration": 278,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:14.615Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "4a18e870bcac35c379b9-1f202af675bfd7578961",
+                  "file": "unauthorized/user-registration.spec.ts",
+                  "line": 112,
+                  "column": 9
+                },
+                {
+                  "title": "Register user with future date of birth @edge @registration",
+                  "ok": true,
+                  "tags": [
+                    "edge",
+                    "registration"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 267,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [
+                            {
+                              "text": "⚠️  API returned HTML instead of JSON. URL: https://zecure.panicguard.center/api/unauthorized/user_register, Status: 200, Content-Type: text/html; charset=UTF-8\n"
+                            },
+                            {
+                              "text": "HTML Preview: <!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\" />\n    <title>Sorry, the page you are looking for could not be found</title>\n    <meta name=\"description\" content=\"\" />\n    <meta name...\n"
+                            }
+                          ],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:14.757Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "4a18e870bcac35c379b9-35d05bc052850931fec2",
+                  "file": "unauthorized/user-registration.spec.ts",
+                  "line": 122,
+                  "column": 9
+                },
+                {
+                  "title": "Register user with age under 13 @edge @registration",
+                  "ok": true,
+                  "tags": [
+                    "edge",
+                    "registration"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 305,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:14.772Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "4a18e870bcac35c379b9-540f041b1127e9aa892a",
+                  "file": "unauthorized/user-registration.spec.ts",
+                  "line": 133,
+                  "column": 9
+                },
+                {
+                  "title": "Check if email is taken - existing email @edge @registration",
+                  "ok": true,
+                  "tags": [
+                    "edge",
+                    "registration"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "passed",
+                          "duration": 158,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:14.900Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "4a18e870bcac35c379b9-2fde8bfe197b3fd43a2e",
+                  "file": "unauthorized/user-registration.spec.ts",
+                  "line": 143,
+                  "column": 9
+                },
+                {
+                  "title": "Check if email is taken - new email @edge @registration",
+                  "ok": true,
+                  "tags": [
+                    "edge",
+                    "registration"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "API Tests",
+                      "projectName": "API Tests",
+                      "results": [
+                        {
+                          "workerIndex": 5,
+                          "parallelIndex": 2,
+                          "status": "passed",
+                          "duration": 237,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-10-15T16:09:15.292Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "4a18e870bcac35c379b9-063c1291e4f66e1740b3",
+                  "file": "unauthorized/user-registration.spec.ts",
+                  "line": 150,
+                  "column": 9
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-10-15T16:09:11.882Z",
+    "duration": 3672.187,
+    "expected": 33,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}
