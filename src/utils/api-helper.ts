@@ -7,7 +7,10 @@ export class ApiHelper {
 
   constructor(request: APIRequestContext, baseURL?: string) {
     this.request = request;
-    this.baseURL = baseURL || process.env.API_BASE_URL || "https://zecure.panicguard.center/api";
+    this.baseURL =
+      baseURL ||
+      process.env.API_BASE_URL ||
+      "https://zecure.panicguard.center/api";
   }
 
   setAuthToken(token: string) {
@@ -102,7 +105,9 @@ export class ApiHelper {
 
   async get(endpoint: string, includeAuth: boolean = false) {
     try {
-      const fullUrl = `${this.baseURL}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}`;
+      const fullUrl = `${this.baseURL}${
+        endpoint.startsWith("/") ? endpoint : `/${endpoint}`
+      }`;
       const response = await this.request.get(fullUrl, {
         headers: this.getHeaders(includeAuth),
       });
@@ -136,7 +141,9 @@ export class ApiHelper {
     isFormData: boolean = false
   ) {
     try {
-      const fullUrl = `${this.baseURL}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}`;
+      const fullUrl = `${this.baseURL}${
+        endpoint.startsWith("/") ? endpoint : `/${endpoint}`
+      }`;
       const headers = this.getHeaders(includeAuth);
 
       let response;
@@ -181,7 +188,9 @@ export class ApiHelper {
   }
 
   async put(endpoint: string, data: any, includeAuth: boolean = false) {
-    const fullUrl = `${this.baseURL}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}`;
+    const fullUrl = `${this.baseURL}${
+      endpoint.startsWith("/") ? endpoint : `/${endpoint}`
+    }`;
     return await this.request.put(fullUrl, {
       headers: this.getHeaders(includeAuth),
       data,
@@ -189,7 +198,9 @@ export class ApiHelper {
   }
 
   async delete(endpoint: string, includeAuth: boolean = false) {
-    const fullUrl = `${this.baseURL}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}`;
+    const fullUrl = `${this.baseURL}${
+      endpoint.startsWith("/") ? endpoint : `/${endpoint}`
+    }`;
     return await this.request.delete(fullUrl, {
       headers: this.getHeaders(includeAuth),
     });
@@ -300,7 +311,9 @@ export class ApiHelper {
     fieldName: string = "file",
     includeAuth: boolean = false
   ) {
-    const fullUrl = `${this.baseURL}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}`;
+    const fullUrl = `${this.baseURL}${
+      endpoint.startsWith("/") ? endpoint : `/${endpoint}`
+    }`;
     const headers: Record<string, string> = includeAuth
       ? { "Auth-token": this.authToken }
       : {};
