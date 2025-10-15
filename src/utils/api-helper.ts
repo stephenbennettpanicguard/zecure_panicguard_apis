@@ -3,9 +3,11 @@ import { APIRequestContext } from "@playwright/test";
 export class ApiHelper {
   private request: APIRequestContext;
   private authToken: string = "";
+  private baseURL: string;
 
-  constructor(request: APIRequestContext) {
+  constructor(request: APIRequestContext, baseURL?: string) {
     this.request = request;
+    this.baseURL = baseURL || process.env.API_BASE_URL || "https://zecure.panicguard.center/api";
   }
 
   setAuthToken(token: string) {
@@ -100,7 +102,8 @@ export class ApiHelper {
 
   async get(endpoint: string, includeAuth: boolean = false) {
     try {
-      const response = await this.request.get(endpoint, {
+      const fullUrl = `${this.baseURL}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}`;
+      const response = await this.request.get(fullUrl, {
         headers: this.getHeaders(includeAuth),
       });
 
@@ -133,17 +136,18 @@ export class ApiHelper {
     isFormData: boolean = false
   ) {
     try {
+      const fullUrl = `${this.baseURL}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}`;
       const headers = this.getHeaders(includeAuth);
 
       let response;
       if (isFormData) {
         delete headers["Content-Type"]; // Let browser set it with boundary
-        response = await this.request.post(endpoint, {
+        response = await this.request.post(fullUrl, {
           headers: includeAuth ? { "Auth-token": this.authToken } : {},
           multipart: data,
         });
       } else {
-        response = await this.request.post(endpoint, {
+        response = await this.request.post(fullUrl, {
           headers,
           data,
         });
@@ -177,14 +181,16 @@ export class ApiHelper {
   }
 
   async put(endpoint: string, data: any, includeAuth: boolean = false) {
-    return await this.request.put(endpoint, {
+    const fullUrl = `${this.baseURL}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}`;
+    return await this.request.put(fullUrl, {
       headers: this.getHeaders(includeAuth),
       data,
     });
   }
 
   async delete(endpoint: string, includeAuth: boolean = false) {
-    return await this.request.delete(endpoint, {
+    const fullUrl = `${this.baseURL}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}`;
+    return await this.request.delete(fullUrl, {
       headers: this.getHeaders(includeAuth),
     });
   }
@@ -294,11 +300,12 @@ export class ApiHelper {
     fieldName: string = "file",
     includeAuth: boolean = false
   ) {
+    const fullUrl = `${this.baseURL}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}`;
     const headers: Record<string, string> = includeAuth
       ? { "Auth-token": this.authToken }
       : {};
 
-    return await this.request.post(endpoint, {
+    return await this.request.post(fullUrl, {
       headers,
       multipart: {
         [fieldName]: {

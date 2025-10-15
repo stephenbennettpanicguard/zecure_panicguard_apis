@@ -8,9 +8,9 @@ export class BasePage {
 
   constructor(request: APIRequestContext) {
     this.request = request;
-    this.apiHelper = new ApiHelper(request);
     this.baseURL =
       process.env.API_BASE_URL || "https://zecure.panicguard.center/api";
+    this.apiHelper = new ApiHelper(request, this.baseURL);
   }
 
   setAuthToken(token: string) {
