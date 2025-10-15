@@ -93,21 +93,11 @@ jobs:
           name: allure-results
           path: allure-results
 
-      - name: Get Allure history
-        uses: actions/checkout@v4
+      - name: Generate Allure Report
         if: always()
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages
-
-      - name: Setup Allure report
-        uses: simple-elf/allure-report-action@master
-        if: always()
-        with:
-          allure_results: allure-results
-          allure_history: allure-history
-          keep_reports: 20
+        run: |
+          rm -rf allure-history || true
+          npx allure generate --output allure-history
 
       - name: Generate timestamp
         id: timestamp
@@ -230,7 +220,7 @@ jobs:
                       </div>
                   </div>
                   
-                  <a href="./allure-report/index.html" class="btn">📊 View Allure Report</a>
+                  <a href="allure-report/index.html" class="btn">📊 View Allure Report</a>
                   
                   <div class="footer">
                       <p>Automated testing powered by GitHub Actions</p>
