@@ -141,6 +141,10 @@ export class ApiHelper {
     isFormData: boolean = false
   ) {
     try {
+      if (!this.request) {
+        throw new Error("Request context is not initialized");
+      }
+
       const fullUrl = `${this.baseURL}${
         endpoint.startsWith("/") ? endpoint : `/${endpoint}`
       }`;

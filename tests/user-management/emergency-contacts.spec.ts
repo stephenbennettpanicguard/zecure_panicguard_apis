@@ -25,6 +25,9 @@ test.describe("Emergency Contacts API Tests", () => {
     emergencyContactsPage = new EmergencyContactsPage(request);
     if (authToken) {
       emergencyContactsPage.setAuthToken(authToken);
+      console.log("🔐 Auth token set for emergency contacts test");
+    } else {
+      console.log("⚠️ No auth token available for emergency contacts test");
     }
   });
 
