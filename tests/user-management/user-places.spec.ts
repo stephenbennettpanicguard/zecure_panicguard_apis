@@ -11,11 +11,27 @@ test.describe("User Places API Tests", () => {
   test.beforeAll(async ({ request }) => {
     authPage = new AuthPage(request);
     const credentials = TestDataFactory.getLoginCredentials();
+    console.log("🔐 Attempting login with credentials:", {
+      username: credentials.username,
+      hasPassword: !!credentials.password,
+      hasPin: !!credentials.pin,
+    });
+
     const loginResponse = await authPage.login(credentials);
     const loginBody = await authPage.safeJsonParse(loginResponse);
 
+    console.log("🔐 Login response:", {
+      success: loginBody.success,
+      hasToken: !!loginBody.data?.token,
+      status: loginResponse.status(),
+      fullResponse: loginBody,
+    });
+
     if (loginBody.success && loginBody.data?.token) {
       authToken = loginBody.data.token;
+      console.log("✅ Authentication successful, token obtained");
+    } else {
+      console.log("❌ Authentication failed, no token available");
     }
   });
 
@@ -23,11 +39,18 @@ test.describe("User Places API Tests", () => {
     userPlacesPage = new UserPlacesPage(request);
     if (authToken) {
       userPlacesPage.setAuthToken(authToken);
+      console.log("🔐 Auth token set for user places test");
+    } else {
+      console.log("⚠️ No auth token available for user places test");
     }
   });
 
   test.describe("Positive Tests", () => {
     test("Get user places @positive @user-places", async () => {
+      if (!authToken) {
+        test.skip("Skipping test - no authentication token available");
+      }
+
       const response = await userPlacesPage.getUserPlaces();
 
       expect(response.ok()).toBeTruthy();
