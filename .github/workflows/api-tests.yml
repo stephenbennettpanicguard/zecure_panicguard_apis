@@ -96,7 +96,8 @@ jobs:
       - name: Generate Allure Report
         if: always()
         run: |
-          npx allure generate allure-results -o allure-history --clean
+          rm -rf allure-history || true
+          npx allure generate --output allure-history
 
       - name: Generate timestamp
         id: timestamp
