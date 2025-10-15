@@ -45,9 +45,9 @@ jobs:
         run: |
           echo "BASE_URL=https://zecure.panicguard.center" >> .env
           echo "API_BASE_URL=https://zecure.panicguard.center/api" >> .env
-          echo "TEST_USERNAME=${{ secrets.TEST_USERNAME || 'stephen.bennett+TestAccount@panicguard.com' }}" >> .env
-          echo "TEST_PASSWORD=${{ secrets.TEST_PASSWORD || 'password123!' }}" >> .env
-          echo "TEST_PIN=${{ secrets.TEST_PIN || '0408' }}" >> .env
+          echo "TEST_USERNAME=${{ secrets.TEST_USERNAME }}" >> .env
+          echo "TEST_PASSWORD=${{ secrets.TEST_PASSWORD }}" >> .env
+          echo "TEST_PIN=${{ secrets.TEST_PIN }}" >> .env
           echo "TEST_MOBILE_NUMBER=+380634534234" >> .env
           echo "TEST_EMAIL=test@asd.com" >> .env
           echo "DEVICE_PLATFORM=iphone" >> .env
