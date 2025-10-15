@@ -22,7 +22,7 @@ test.describe("Authentication API Tests", () => {
       console.log("🔍 Testing login with credentials:", {
         username: credentials.username,
         hasPassword: !!credentials.password,
-        hasPin: !!credentials.pin
+        hasPin: !!credentials.pin,
       });
       const response = await authPage.login(credentials);
 

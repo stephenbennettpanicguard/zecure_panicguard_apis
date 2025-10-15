@@ -45,9 +45,9 @@ jobs:
         run: |
           echo "BASE_URL=https://zecure.panicguard.center" >> .env
           echo "API_BASE_URL=https://zecure.panicguard.center/api" >> .env
-          echo "TEST_USERNAME=${{ secrets.TEST_USERNAME }}" >> .env
-          echo "TEST_PASSWORD=${{ secrets.TEST_PASSWORD }}" >> .env
-          echo "TEST_PIN=${{ secrets.TEST_PIN }}" >> .env
+          echo "TEST_USERNAME=${{ secrets.TEST_USERNAME || 'test@example.com' }}" >> .env
+          echo "TEST_PASSWORD=${{ secrets.TEST_PASSWORD || 'test_password' }}" >> .env
+          echo "TEST_PIN=${{ secrets.TEST_PIN || '0000' }}" >> .env
           echo "TEST_MOBILE_NUMBER=+380634534234" >> .env
           echo "TEST_EMAIL=test@asd.com" >> .env
           echo "DEVICE_PLATFORM=iphone" >> .env
@@ -61,16 +61,19 @@ jobs:
           echo "🔍 Checking GitHub Secrets configuration..."
           if [ -z "${{ secrets.TEST_USERNAME }}" ]; then
             echo "❌ TEST_USERNAME secret is not set"
+            echo "⚠️  Using fallback credentials for testing"
           else
             echo "✅ TEST_USERNAME secret is configured"
           fi
           if [ -z "${{ secrets.TEST_PASSWORD }}" ]; then
             echo "❌ TEST_PASSWORD secret is not set"
+            echo "⚠️  Using fallback credentials for testing"
           else
             echo "✅ TEST_PASSWORD secret is configured"
           fi
           if [ -z "${{ secrets.TEST_PIN }}" ]; then
             echo "❌ TEST_PIN secret is not set"
+            echo "⚠️  Using fallback credentials for testing"
           else
             echo "✅ TEST_PIN secret is configured"
           fi
