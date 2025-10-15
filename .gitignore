@@ -41,3 +41,12 @@ yarn-error.log*
 playwright/.cache/
 .playwright/
 
+# Documentation files with sensitive data (setup instructions)
+COMPLETE_SETUP.sh
+FINAL_DELIVERY.md
+GITHUB_SETUP_INSTRUCTIONS.md
+MOVE_AND_PUSH_INSTRUCTIONS.md
+PUSH_TO_GITHUB.md
+STATUS_READY_TO_PUSH.md
+TEST_STATUS.md
+

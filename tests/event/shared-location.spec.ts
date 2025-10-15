@@ -12,7 +12,7 @@ test.describe("Shared Location API Tests", () => {
     authPage = new AuthPage(request);
     const credentials = TestDataFactory.getLoginCredentials();
     const loginResponse = await authPage.login(credentials);
-    const loginBody = await loginResponse.json();
+    const loginBody = await authPage.safeJsonParse(loginResponse);
 
     if (loginBody.success && loginBody.data?.token) {
       authToken = loginBody.data.token;
@@ -130,7 +130,7 @@ test.describe("Shared Location API Tests", () => {
       });
       const response = await eventPage.createSharedLocation(sharedLocationData);
 
-      const responseBody = await response.json();
+      const responseBody = await eventPage.safeJsonParse(response);
       expect(responseBody.success).toBeFalsy();
     });
 

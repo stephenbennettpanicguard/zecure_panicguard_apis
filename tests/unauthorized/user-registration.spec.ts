@@ -16,7 +16,7 @@ test.describe("User Registration API Tests", () => {
       const response = await unauthorizedPage.userRegister(userData);
 
       expect(response.status()).toBeLessThan(500);
-      const responseBody = await response.json();
+      const responseBody = await unauthorizedPage.safeJsonParse(response);
       expect(responseBody).toBeDefined();
     });
 
@@ -44,7 +44,7 @@ test.describe("User Registration API Tests", () => {
       });
       const response = await unauthorizedPage.userRegister(userData);
 
-      const responseBody = await response.json();
+      const responseBody = await unauthorizedPage.safeJsonParse(response);
       expect(responseBody.success).toBeFalsy();
     });
 
@@ -54,7 +54,7 @@ test.describe("User Registration API Tests", () => {
       });
       const response = await unauthorizedPage.userRegister(userData);
 
-      const responseBody = await response.json();
+      const responseBody = await unauthorizedPage.safeJsonParse(response);
       expect(responseBody.success).toBeFalsy();
     });
 
@@ -65,7 +65,7 @@ test.describe("User Registration API Tests", () => {
       });
       const response = await unauthorizedPage.userRegister(userData);
 
-      const responseBody = await response.json();
+      const responseBody = await unauthorizedPage.safeJsonParse(response);
       expect(responseBody.success).toBeFalsy();
     });
 
@@ -75,7 +75,7 @@ test.describe("User Registration API Tests", () => {
       });
       const response = await unauthorizedPage.userRegister(userData);
 
-      const responseBody = await response.json();
+      const responseBody = await unauthorizedPage.safeJsonParse(response);
       expect(responseBody.success).toBeFalsy();
     });
 
@@ -86,14 +86,14 @@ test.describe("User Registration API Tests", () => {
       });
       const response = await unauthorizedPage.userRegister(userData);
 
-      const responseBody = await response.json();
+      const responseBody = await unauthorizedPage.safeJsonParse(response);
       expect(responseBody.success).toBeFalsy();
     });
 
     test("Register user with missing required fields @negative @registration", async () => {
       const response = await unauthorizedPage.userRegister({} as any);
 
-      const responseBody = await response.json();
+      const responseBody = await unauthorizedPage.safeJsonParse(response);
       expect(responseBody.success).toBeFalsy();
     });
   });
@@ -126,7 +126,7 @@ test.describe("User Registration API Tests", () => {
       });
       const response = await unauthorizedPage.userRegister(userData);
 
-      const responseBody = await response.json();
+      const responseBody = await unauthorizedPage.safeJsonParse(response);
       expect(responseBody.success).toBeFalsy();
     });
 
@@ -142,7 +142,7 @@ test.describe("User Registration API Tests", () => {
 
     test("Check if email is taken - existing email @edge @registration", async () => {
       const response = await unauthorizedPage.isEmailTaken("test@asd.com");
-      const responseBody = await response.json();
+      const responseBody = await unauthorizedPage.safeJsonParse(response);
 
       expect(responseBody).toHaveProperty("taken");
     });
@@ -151,7 +151,7 @@ test.describe("User Registration API Tests", () => {
       const response = await unauthorizedPage.isEmailTaken(
         generateRandomEmail()
       );
-      const responseBody = await response.json();
+      const responseBody = await unauthorizedPage.safeJsonParse(response);
 
       expect(responseBody).toHaveProperty("taken");
     });

@@ -12,7 +12,7 @@ test.describe("User Places API Tests", () => {
     authPage = new AuthPage(request);
     const credentials = TestDataFactory.getLoginCredentials();
     const loginResponse = await authPage.login(credentials);
-    const loginBody = await loginResponse.json();
+    const loginBody = await authPage.safeJsonParse(loginResponse);
 
     if (loginBody.success && loginBody.data?.token) {
       authToken = loginBody.data.token;
@@ -31,7 +31,7 @@ test.describe("User Places API Tests", () => {
       const response = await userPlacesPage.getUserPlaces();
 
       expect(response.ok()).toBeTruthy();
-      const responseBody = await response.json();
+      const responseBody = await userPlacesPage.safeJsonParse(response);
       expect(responseBody).toBeDefined();
     });
 
@@ -81,7 +81,7 @@ test.describe("User Places API Tests", () => {
     test("Create place with missing required fields @negative @user-places", async () => {
       const response = await userPlacesPage.createUserPlace({} as any);
 
-      const responseBody = await response.json();
+      const responseBody = await userPlacesPage.safeJsonParse(response);
       expect(responseBody.success).toBeFalsy();
     });
 

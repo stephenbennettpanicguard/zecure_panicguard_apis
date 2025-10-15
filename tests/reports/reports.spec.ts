@@ -14,7 +14,7 @@ test.describe("Reports API Tests", () => {
       const response = await reportsPage.getSettings();
 
       expect(response.ok()).toBeTruthy();
-      const responseBody = await response.json();
+      const responseBody = await reportsPage.safeJsonParse(response);
       expect(responseBody).toBeDefined();
     });
 
@@ -49,7 +49,7 @@ test.describe("Reports API Tests", () => {
     test("Submit report with missing required fields @negative @reports", async () => {
       const response = await reportsPage.submitReport({} as any);
 
-      const responseBody = await response.json();
+      const responseBody = await reportsPage.safeJsonParse(response);
       expect(responseBody.success).toBeFalsy();
     });
 

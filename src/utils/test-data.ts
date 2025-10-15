@@ -25,12 +25,9 @@ export class TestDataFactory {
   static getLoginCredentials(overrides?: any) {
     return {
       username:
-        overrides?.username ||
-        process.env.TEST_USERNAME ||
-        "stephen.bennett+TestAccount@panicguard.com",
-      password:
-        overrides?.password || process.env.TEST_PASSWORD || "password123!",
-      pin: overrides?.pin || process.env.TEST_PIN || "0408",
+        overrides?.username || process.env.TEST_USERNAME || "test@example.com",
+      password: overrides?.password || process.env.TEST_PASSWORD || "change_me",
+      pin: overrides?.pin || process.env.TEST_PIN || "0000",
       device_platform:
         overrides?.device_platform || process.env.DEVICE_PLATFORM || "iphone",
       app_version: overrides?.app_version || process.env.APP_VERSION || "3.2",

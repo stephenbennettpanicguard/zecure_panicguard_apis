@@ -12,7 +12,7 @@ test.describe("Meetings and Journeys API Tests", () => {
     authPage = new AuthPage(request);
     const credentials = TestDataFactory.getLoginCredentials();
     const loginResponse = await authPage.login(credentials);
-    const loginBody = await loginResponse.json();
+    const loginBody = await authPage.safeJsonParse(loginResponse);
 
     if (loginBody.success && loginBody.data?.token) {
       authToken = loginBody.data.token;

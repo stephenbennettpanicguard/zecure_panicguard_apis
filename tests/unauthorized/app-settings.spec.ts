@@ -9,23 +9,15 @@ test.describe("App Settings API Tests", () => {
 
     // Skip tests if API is not accessible or explicitly skipped
     test.skip(
-      process.env.SKIP_API_TESTS === "true" || process.env.API_SKIP_TESTS === "true",
+      process.env.SKIP_API_TESTS === "true" ||
+        process.env.API_SKIP_TESTS === "true",
       "API tests are skipped - API server not accessible or tests disabled"
     );
   });
 
   // Helper function to safely parse JSON responses
   async function safeJsonParse(response: any) {
-    const contentType = response.headers()["content-type"];
-    if (!contentType || !contentType.includes("application/json")) {
-      const responseText = await response.text();
-      throw new Error(
-        `Expected JSON response but got ${
-          contentType || "unknown content type"
-        }. Response body: ${responseText}`
-      );
-    }
-    return await response.json();
+    return await unauthorizedPage.safeJsonParse(response);
   }
 
   test.describe("Positive Tests", () => {

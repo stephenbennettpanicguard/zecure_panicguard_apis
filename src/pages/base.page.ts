@@ -20,4 +20,18 @@ export class BasePage {
   getAuthToken(): string {
     return this.apiHelper.getAuthToken();
   }
+
+  /**
+   * Safely parse JSON response, handling HTML error pages gracefully
+   */
+  async safeJsonParse(response: any): Promise<any> {
+    return await this.apiHelper.safeJsonParse(response);
+  }
+
+  /**
+   * Diagnostic method to test API connectivity and identify common issues
+   */
+  async diagnoseApiIssues(): Promise<void> {
+    return await this.apiHelper.diagnoseApiIssues(this.baseURL);
+  }
 }

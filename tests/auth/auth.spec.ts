@@ -25,7 +25,7 @@ test.describe("Authentication API Tests", () => {
       expect(response.status()).toBeGreaterThanOrEqual(200);
       expect(response.status()).toBeLessThan(500);
 
-      const responseBody = await response.json();
+      const responseBody = await authPage.safeJsonParse(response);
 
       // Check if it's a session error (which means API is working)
       if (
@@ -54,7 +54,7 @@ test.describe("Authentication API Tests", () => {
       const response = await authPage.login(credentials);
 
       expect(response.status()).toBe(200);
-      const responseBody = await response.json();
+      const responseBody = await authPage.safeJsonParse(response);
 
       if (responseBody.success && responseBody.data?.token) {
         expect(typeof responseBody.data.token).toBe("string");
@@ -66,7 +66,7 @@ test.describe("Authentication API Tests", () => {
       // First login to get token
       const credentials = TestDataFactory.getLoginCredentials();
       const loginResponse = await authPage.login(credentials);
-      const loginBody = await loginResponse.json();
+      const loginBody = await authPage.safeJsonParse(loginResponse);
 
       if (loginBody.success && loginBody.data?.token) {
         authPage.setAuthToken(loginBody.data.token);
@@ -83,7 +83,7 @@ test.describe("Authentication API Tests", () => {
       });
       const response = await authPage.login(credentials);
 
-      const responseBody = await response.json();
+      const responseBody = await authPage.safeJsonParse(response);
       expect(responseBody.success).toBeFalsy();
     });
 
@@ -93,7 +93,7 @@ test.describe("Authentication API Tests", () => {
       });
       const response = await authPage.login(credentials);
 
-      const responseBody = await response.json();
+      const responseBody = await authPage.safeJsonParse(response);
       expect(responseBody.success).toBeFalsy();
     });
 
@@ -103,7 +103,7 @@ test.describe("Authentication API Tests", () => {
       });
       const response = await authPage.login(credentials);
 
-      const responseBody = await response.json();
+      const responseBody = await authPage.safeJsonParse(response);
       expect(responseBody.success).toBeFalsy();
     });
 
@@ -113,7 +113,7 @@ test.describe("Authentication API Tests", () => {
       });
       const response = await authPage.login(credentials);
 
-      const responseBody = await response.json();
+      const responseBody = await authPage.safeJsonParse(response);
       expect(responseBody.success).toBeFalsy();
     });
 
@@ -136,7 +136,7 @@ test.describe("Authentication API Tests", () => {
       });
       const response = await authPage.login(credentials);
 
-      const responseBody = await response.json();
+      const responseBody = await authPage.safeJsonParse(response);
       expect(responseBody.success).toBeFalsy();
     });
 
@@ -146,7 +146,7 @@ test.describe("Authentication API Tests", () => {
       });
       const response = await authPage.login(credentials);
 
-      const responseBody = await response.json();
+      const responseBody = await authPage.safeJsonParse(response);
       expect(responseBody.success).toBeFalsy();
     });
 
@@ -156,7 +156,7 @@ test.describe("Authentication API Tests", () => {
       });
       const response = await authPage.login(credentials);
 
-      const responseBody = await response.json();
+      const responseBody = await authPage.safeJsonParse(response);
       expect(responseBody.success).toBeFalsy();
     });
 
@@ -171,7 +171,7 @@ test.describe("Authentication API Tests", () => {
 
     test("Login with missing required fields @edge @auth", async () => {
       const response = await authPage.login({} as any);
-      const responseBody = await response.json();
+      const responseBody = await authPage.safeJsonParse(response);
       expect(responseBody.success).toBeFalsy();
     });
   });

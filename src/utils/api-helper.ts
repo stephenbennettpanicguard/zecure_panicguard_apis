@@ -189,6 +189,105 @@ export class ApiHelper {
     });
   }
 
+  /**
+   * Safely parse JSON response, handling HTML error pages gracefully
+   */
+  async safeJsonParse(response: any): Promise<any> {
+    try {
+      const contentType = response.headers()["content-type"] || "";
+      const status = response.status();
+      const url = response.url();
+
+      // If content-type indicates HTML, don't try to parse as JSON
+      if (
+        contentType.includes("text/html") &&
+        !contentType.includes("application/json")
+      ) {
+        const text = await response.text();
+        console.warn(
+          `⚠️  API returned HTML instead of JSON. URL: ${url}, Status: ${status}, Content-Type: ${contentType}`
+        );
+        console.warn(`HTML Preview: ${text.substring(0, 200)}...`);
+
+        // Check for common error patterns
+        let errorType = "Unknown HTML error";
+        if (text.includes("404") || status === 404) {
+          errorType = "Endpoint not found (404)";
+        } else if (text.includes("login") || text.includes("sign in")) {
+          errorType = "Authentication required - redirected to login page";
+        } else if (text.includes("403") || status === 403) {
+          errorType = "Access forbidden (403)";
+        } else if (text.includes("500") || status === 500) {
+          errorType = "Server error (500)";
+        } else if (text.includes("nginx") || text.includes("Apache")) {
+          errorType = "Web server error page";
+        }
+
+        return {
+          success: false,
+          error: `API returned HTML error page (Status: ${status}) - ${errorType}`,
+          errorType: errorType,
+          htmlContent: text,
+          contentType: contentType,
+          url: url,
+          status: status,
+        };
+      }
+
+      // Try to parse as JSON
+      const jsonData = await response.json();
+      return jsonData;
+    } catch (parseError) {
+      // If JSON parsing fails, get the raw text to understand what we received
+      const text = await response.text();
+      const status = response.status();
+      const url = response.url();
+
+      console.error(
+        `❌ JSON parsing failed for response. URL: ${url}, Status: ${status}`
+      );
+      console.error(`Response preview: ${text.substring(0, 300)}...`);
+
+      // Check if it's an HTML error page
+      if (text.includes("<!DOCTYPE") || text.includes("<html")) {
+        let errorType = "Unknown HTML error";
+        if (text.includes("404") || status === 404) {
+          errorType = "Endpoint not found (404)";
+        } else if (text.includes("login") || text.includes("sign in")) {
+          errorType = "Authentication required - redirected to login page";
+        } else if (text.includes("403") || status === 403) {
+          errorType = "Access forbidden (403)";
+        } else if (text.includes("500") || status === 500) {
+          errorType = "Server error (500)";
+        }
+
+        return {
+          success: false,
+          error: `API returned HTML error page instead of JSON (Status: ${status}) - ${errorType}`,
+          errorType: errorType,
+          htmlContent: text,
+          parseError:
+            parseError instanceof Error
+              ? parseError.message
+              : String(parseError),
+          url: url,
+          status: status,
+        };
+      }
+
+      // Return raw text if it's not HTML
+      return {
+        success: false,
+        error: `Failed to parse response as JSON (Status: ${status})`,
+        rawContent: text,
+        parseError:
+          parseError instanceof Error ? parseError.message : String(parseError),
+        url: url,
+        status: status,
+      };
+    }
+  }
+
   async uploadFile(
     endpoint: string,
     filePath: string,
@@ -209,6 +308,73 @@ export class ApiHelper {
         },
       },
     });
+  }
+
+  /**
+   * Diagnostic method to test API connectivity and identify common issues
+   */
+  async diagnoseApiIssues(baseUrl: string): Promise<void> {
+    console.log("🔍 Running API diagnostics...");
+
+    try {
+      // Test 1: Basic connectivity
+      console.log("1. Testing basic connectivity...");
+      const healthCheck = await this.request
+        .get(`${baseUrl}/health`, {
+          timeout: 10000,
+        })
+        .catch(() => null);
+
+      if (healthCheck) {
+        console.log(`✅ Health check: Status ${healthCheck.status()}`);
+      } else {
+        console.log("⚠️  Health check endpoint not available or failed");
+      }
+
+      // Test 2: Test auth endpoint
+      console.log("2. Testing auth endpoint...");
+      const authTest = await this.request
+        .get(`${baseUrl}/auth`, {
+          timeout: 10000,
+        })
+        .catch(() => null);
+
+      if (authTest) {
+        const contentType = authTest.headers()["content-type"] || "";
+        console.log(
+          `✅ Auth endpoint: Status ${authTest.status()}, Content-Type: ${contentType}`
+        );
+
+        if (contentType.includes("text/html")) {
+          console.log(
+            "⚠️  Auth endpoint returns HTML - this may indicate wrong endpoint or server configuration"
+          );
+        }
+      } else {
+        console.log("❌ Auth endpoint not accessible");
+      }
+
+      // Test 3: Test API base path
+      console.log("3. Testing API base path...");
+      const apiTest = await this.request
+        .get(`${baseUrl}/api`, {
+          timeout: 10000,
+        })
+        .catch(() => null);
+
+      if (apiTest) {
+        const contentType = apiTest.headers()["content-type"] || "";
+        console.log(
+          `✅ API base: Status ${apiTest.status()}, Content-Type: ${contentType}`
+        );
+      } else {
+        console.log("❌ API base path not accessible");
+      }
+
+      console.log("🔍 API diagnostics complete.");
+    } catch (error) {
+      console.error("❌ API diagnostics failed:", error);
+    }
   }
 }
 

@@ -12,7 +12,7 @@ test.describe("Location Tracking API Tests", () => {
     authPage = new AuthPage(request);
     const credentials = TestDataFactory.getLoginCredentials();
     const loginResponse = await authPage.login(credentials);
-    const loginBody = await loginResponse.json();
+    const loginBody = await authPage.safeJsonParse(loginResponse);
 
     if (loginBody.success && loginBody.data?.token) {
       authToken = loginBody.data.token;
@@ -80,7 +80,7 @@ test.describe("Location Tracking API Tests", () => {
     test("Post location with missing required fields @negative @location", async () => {
       const response = await eventPage.postLocation({} as any);
 
-      const responseBody = await response.json();
+      const responseBody = await eventPage.safeJsonParse(response);
       expect(responseBody.success).toBeFalsy();
     });
 

@@ -14,7 +14,7 @@ test.describe("Emergency Contacts API Tests", () => {
     authPage = new AuthPage(request);
     const credentials = TestDataFactory.getLoginCredentials();
     const loginResponse = await authPage.login(credentials);
-    const loginBody = await loginResponse.json();
+    const loginBody = await authPage.safeJsonParse(loginResponse);
 
     if (loginBody.success && loginBody.data?.token) {
       authToken = loginBody.data.token;
@@ -33,7 +33,7 @@ test.describe("Emergency Contacts API Tests", () => {
       const response = await emergencyContactsPage.getEmergencyContactGroups();
 
       expect(response.ok()).toBeTruthy();
-      const responseBody = await response.json();
+      const responseBody = await emergencyContactsPage.safeJsonParse(response);
       expect(responseBody).toBeDefined();
     });
 
@@ -44,7 +44,7 @@ test.describe("Emergency Contacts API Tests", () => {
       );
 
       expect(response.status()).toBeLessThan(500);
-      const responseBody = await response.json();
+      const responseBody = await emergencyContactsPage.safeJsonParse(response);
       if (responseBody.success && responseBody.data?.id) {
         createdGroupId = responseBody.data.id;
       }
@@ -77,7 +77,7 @@ test.describe("Emergency Contacts API Tests", () => {
       const response = await emergencyContactsPage.getEmergencyContacts();
 
       expect(response.ok()).toBeTruthy();
-      const responseBody = await response.json();
+      const responseBody = await emergencyContactsPage.safeJsonParse(response);
       expect(responseBody).toBeDefined();
     });
 
