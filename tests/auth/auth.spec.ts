@@ -19,6 +19,11 @@ test.describe("Authentication API Tests", () => {
   test.describe("Positive Tests", () => {
     test("Login with valid credentials should succeed @positive @auth", async () => {
       const credentials = TestDataFactory.getLoginCredentials();
+      console.log("🔍 Testing login with credentials:", {
+        username: credentials.username,
+        hasPassword: !!credentials.password,
+        hasPin: !!credentials.pin
+      });
       const response = await authPage.login(credentials);
 
       // API is working but may have session issues
