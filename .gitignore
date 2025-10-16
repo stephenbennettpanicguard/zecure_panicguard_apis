@@ -16,8 +16,12 @@ allure-report/
 # Build outputs
 dist/
 build/
-*.js
 *.js.map
+
+# Compiled JavaScript files (but not utility scripts)
+src/**/*.js
+tests/**/*.js
+pages/**/*.js
 
 # IDE
 .vscode/
