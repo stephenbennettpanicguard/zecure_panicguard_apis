@@ -13,7 +13,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
 
   // Global setup to check API connectivity
-  globalSetup: "./scripts/global-setup.js",
+  globalSetup: "./utils/global-setup.js",
   reporter: [
     ["html"],
     ["list"],

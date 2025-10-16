@@ -1,12 +1,7 @@
-import { test, expect } from "@playwright/test";
-import { UnauthorizedPage } from "../../src/pages/unauthorized.page";
+import { test, expect } from "../../fixtures/testFixture";
 
 test.describe("App Settings API Tests", () => {
-  let unauthorizedPage: UnauthorizedPage;
-
-  test.beforeEach(async ({ request }) => {
-    unauthorizedPage = new UnauthorizedPage(request);
-
+  test.beforeEach(async ({}) => {
     // Skip tests if API is not accessible or explicitly skipped
     test.skip(
       process.env.SKIP_API_TESTS === "true" ||
@@ -15,32 +10,33 @@ test.describe("App Settings API Tests", () => {
     );
   });
 
-  // Helper function to safely parse JSON responses
-  async function safeJsonParse(response: any) {
-    return await unauthorizedPage.safeJsonParse(response);
-  }
-
   test.describe("Positive Tests", () => {
-    test("Get app settings should return configuration @positive @app-settings", async () => {
+    test("Get app settings should return configuration @positive @app-settings", async ({
+      unauthorizedPage,
+    }) => {
       const response = await unauthorizedPage.getAppSettings();
 
       expect(response.ok()).toBeTruthy();
       expect(response.status()).toBe(200);
 
-      const responseBody = await safeJsonParse(response);
+      const responseBody = await unauthorizedPage.safeJsonParse(response);
       expect(responseBody).toBeDefined();
     });
 
-    test("Get app settings should return valid JSON @positive @app-settings", async () => {
+    test("Get app settings should return valid JSON @positive @app-settings", async ({
+      unauthorizedPage,
+    }) => {
       const response = await unauthorizedPage.getAppSettings();
 
       expect(response.ok()).toBeTruthy();
 
-      const responseBody = await safeJsonParse(response);
+      const responseBody = await unauthorizedPage.safeJsonParse(response);
       expect(typeof responseBody).toBe("object");
     });
 
-    test("Get app settings should return JSON content type @positive @app-settings", async () => {
+    test("Get app settings should return JSON content type @positive @app-settings", async ({
+      unauthorizedPage,
+    }) => {
       const response = await unauthorizedPage.getAppSettings();
 
       expect(response.ok()).toBeTruthy();
@@ -74,15 +70,17 @@ test.describe("App Settings API Tests", () => {
   });
 
   test.describe("Edge Cases", () => {
-    test("Get app settings multiple times should return consistent data @edge @app-settings", async () => {
+    test("Get app settings multiple times should return consistent data @edge @app-settings", async ({
+      unauthorizedPage,
+    }) => {
       const response1 = await unauthorizedPage.getAppSettings();
       const response2 = await unauthorizedPage.getAppSettings();
 
       expect(response1.ok()).toBeTruthy();
       expect(response2.ok()).toBeTruthy();
 
-      const body1 = await safeJsonParse(response1);
-      const body2 = await safeJsonParse(response2);
+      const body1 = await unauthorizedPage.safeJsonParse(response1);
+      const body2 = await unauthorizedPage.safeJsonParse(response2);
 
       expect(body1).toEqual(body2);
     });
@@ -102,7 +100,9 @@ test.describe("App Settings API Tests", () => {
       }
     });
 
-    test("Get app settings should handle non-JSON responses gracefully @edge @app-settings", async () => {
+    test("Get app settings should handle non-JSON responses gracefully @edge @app-settings", async ({
+      unauthorizedPage,
+    }) => {
       const response = await unauthorizedPage.getAppSettings();
 
       // This test will help identify if the API returns HTML error pages

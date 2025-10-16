@@ -1,40 +1,34 @@
-import { test, expect } from "@playwright/test";
-import { AuthPage } from "../../src/pages/auth.page";
-import { EventPage } from "../../src/pages/event.page";
-import { TestDataFactory } from "../../src/utils/test-data";
+import { test, expect } from "../../fixtures/testFixture";
+import { TestDataFactory } from "../../utils/test-data";
 
 test.describe("Shared Location API Tests", () => {
-  let authPage: AuthPage;
-  let eventPage: EventPage;
   let authToken: string;
 
-  test.beforeAll(async ({ request }) => {
-    authPage = new AuthPage(request);
-    const credentials = TestDataFactory.getLoginCredentials();
-    const loginResponse = await authPage.login(credentials);
-    const loginBody = await authPage.safeJsonParse(loginResponse);
-
-    if (loginBody.success && loginBody.data?.token) {
-      authToken = loginBody.data.token;
-    }
-  });
-
-  test.beforeEach(async ({ request }) => {
-    eventPage = new EventPage(request);
-    if (authToken) {
-      eventPage.setAuthToken(authToken);
-    }
+  test.beforeAll(async ({ authenticatedContext }) => {
+    authToken = authenticatedContext.token || "";
   });
 
   test.describe("Positive Tests", () => {
-    test("Create shared location with single recipient @positive @shared-location", async () => {
+    test("Create shared location with single recipient @positive @shared-location", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const sharedLocationData = TestDataFactory.getSharedLocationData();
       const response = await eventPage.createSharedLocation(sharedLocationData);
 
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Create shared location with multiple recipients @positive @shared-location", async () => {
+    test("Create shared location with multiple recipients @positive @shared-location", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const sharedLocationData = TestDataFactory.getSharedLocationData({
         recipients: [
           {
@@ -56,19 +50,37 @@ test.describe("Shared Location API Tests", () => {
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Get my shared location @positive @shared-location", async () => {
+    test("Get my shared location @positive @shared-location", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const response = await eventPage.getMySharedLocation();
 
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Get shared location by ID @positive @shared-location", async () => {
+    test("Get shared location by ID @positive @shared-location", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const response = await eventPage.getSharedLocation("25");
 
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Update shared location recipient duration @positive @shared-location", async () => {
+    test("Update shared location recipient duration @positive @shared-location", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const response = await eventPage.updateSharedLocationRecipient(
         "12",
         "1000"
@@ -77,19 +89,37 @@ test.describe("Shared Location API Tests", () => {
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Delete shared location recipient @positive @shared-location", async () => {
+    test("Delete shared location recipient @positive @shared-location", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const response = await eventPage.deleteSharedLocationRecipient("67");
 
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Delete shared location @positive @shared-location", async () => {
+    test("Delete shared location @positive @shared-location", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const response = await eventPage.deleteSharedLocation("25");
 
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Append to shared location @positive @shared-location", async () => {
+    test("Append to shared location @positive @shared-location", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const data = {
         duration: 7200,
         recipients: [
@@ -107,7 +137,9 @@ test.describe("Shared Location API Tests", () => {
   });
 
   test.describe("Negative Tests", () => {
-    test("Create shared location without auth @negative @shared-location", async () => {
+    test("Create shared location without auth @negative @shared-location", async ({
+      eventPage,
+    }) => {
       eventPage.setAuthToken("");
       const sharedLocationData = TestDataFactory.getSharedLocationData();
       const response = await eventPage.createSharedLocation(sharedLocationData);
@@ -115,7 +147,13 @@ test.describe("Shared Location API Tests", () => {
       expect(response.ok()).toBeFalsy();
     });
 
-    test("Create shared location with invalid duration @negative @shared-location", async () => {
+    test("Create shared location with invalid duration @negative @shared-location", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const sharedLocationData = TestDataFactory.getSharedLocationData({
         duration: "-100",
       });
@@ -124,7 +162,13 @@ test.describe("Shared Location API Tests", () => {
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Create shared location without recipients @negative @shared-location", async () => {
+    test("Create shared location without recipients @negative @shared-location", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const sharedLocationData = TestDataFactory.getSharedLocationData({
         recipients: [],
       });
@@ -134,13 +178,25 @@ test.describe("Shared Location API Tests", () => {
       expect(responseBody.success).toBeFalsy();
     });
 
-    test("Get non-existent shared location @negative @shared-location", async () => {
+    test("Get non-existent shared location @negative @shared-location", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const response = await eventPage.getSharedLocation("999999");
 
       expect(response.status()).toBeGreaterThanOrEqual(400);
     });
 
-    test("Update non-existent recipient @negative @shared-location", async () => {
+    test("Update non-existent recipient @negative @shared-location", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const response = await eventPage.updateSharedLocationRecipient(
         "999999",
         "1000"
@@ -151,7 +207,13 @@ test.describe("Shared Location API Tests", () => {
   });
 
   test.describe("Edge Cases", () => {
-    test("Create shared location with very long duration @edge @shared-location", async () => {
+    test("Create shared location with very long duration @edge @shared-location", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const sharedLocationData = TestDataFactory.getSharedLocationData({
         duration: "86400",
       }); // 24 hours
@@ -160,7 +222,13 @@ test.describe("Shared Location API Tests", () => {
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Create shared location with recipient without device info @edge @shared-location", async () => {
+    test("Create shared location with recipient without device info @edge @shared-location", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const sharedLocationData = TestDataFactory.getSharedLocationData({
         recipients: [
           {
@@ -175,7 +243,13 @@ test.describe("Shared Location API Tests", () => {
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Create shared location with special characters in recipient name @edge @shared-location", async () => {
+    test("Create shared location with special characters in recipient name @edge @shared-location", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const sharedLocationData = TestDataFactory.getSharedLocationData({
         recipients: [
           {
@@ -190,7 +264,13 @@ test.describe("Shared Location API Tests", () => {
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Create shared location with many recipients @edge @shared-location", async () => {
+    test("Create shared location with many recipients @edge @shared-location", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const recipients = Array.from({ length: 10 }, (_, i) => ({
         name: `Recipient ${i + 1}`,
         email: `recipient${i + 1}@test.com`,
@@ -205,7 +285,13 @@ test.describe("Shared Location API Tests", () => {
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Update shared location with new recipients @edge @shared-location", async () => {
+    test("Update shared location with new recipients @edge @shared-location", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const data = {
         duration: 3600,
         recipients: [

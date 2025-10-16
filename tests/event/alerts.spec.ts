@@ -1,33 +1,21 @@
-import { test, expect } from "@playwright/test";
-import { AuthPage } from "../../src/pages/auth.page";
-import { EventPage } from "../../src/pages/event.page";
-import { TestDataFactory } from "../../src/utils/test-data";
+import { test, expect } from "../../fixtures/testFixture";
+import { TestDataFactory } from "../../utils/test-data";
 
 test.describe("Alert Management API Tests", () => {
-  let authPage: AuthPage;
-  let eventPage: EventPage;
   let authToken: string;
 
-  test.beforeAll(async ({ request }) => {
-    authPage = new AuthPage(request);
-    const credentials = TestDataFactory.getLoginCredentials();
-    const loginResponse = await authPage.login(credentials);
-    const loginBody = await authPage.safeJsonParse(loginResponse);
-
-    if (loginBody.success && loginBody.data?.token) {
-      authToken = loginBody.data.token;
-    }
-  });
-
-  test.beforeEach(async ({ request }) => {
-    eventPage = new EventPage(request);
-    if (authToken) {
-      eventPage.setAuthToken(authToken);
-    }
+  test.beforeAll(async ({ authenticatedContext }) => {
+    authToken = authenticatedContext.token || "";
   });
 
   test.describe("Positive Tests", () => {
-    test("Change alert type to TYPE_ALERT @positive @alert", async () => {
+    test("Change alert type to TYPE_ALERT @positive @alert", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const alertData = TestDataFactory.getAlertData({
         event_type_id: "2",
         type_trigger: "1",
@@ -37,7 +25,13 @@ test.describe("Alert Management API Tests", () => {
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Change alert type to TYPE_DANGER_ALERT @positive @alert", async () => {
+    test("Change alert type to TYPE_DANGER_ALERT @positive @alert", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const alertData = TestDataFactory.getAlertData({
         event_type_id: "3",
         type_trigger: "1",
@@ -47,47 +41,89 @@ test.describe("Alert Management API Tests", () => {
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Trigger alert with shake @positive @alert", async () => {
+    test("Trigger alert with shake @positive @alert", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const alertData = TestDataFactory.getAlertData({ type_trigger: "2" });
       const response = await eventPage.changeAlertType(alertData);
 
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Trigger alert with man down @positive @alert", async () => {
+    test("Trigger alert with man down @positive @alert", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const alertData = TestDataFactory.getAlertData({ type_trigger: "3" });
       const response = await eventPage.changeAlertType(alertData);
 
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Trigger alert with button press @positive @alert", async () => {
+    test("Trigger alert with button press @positive @alert", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const alertData = TestDataFactory.getAlertData({ type_trigger: "4" });
       const response = await eventPage.changeAlertType(alertData);
 
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Trigger alert with duress PIN @positive @alert", async () => {
+    test("Trigger alert with duress PIN @positive @alert", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const alertData = TestDataFactory.getAlertData({ type_trigger: "7" });
       const response = await eventPage.changeAlertType(alertData);
 
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Get test alert @positive @alert", async () => {
+    test("Get test alert @positive @alert", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const response = await eventPage.testAlert();
 
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Close alert @positive @alert", async () => {
+    test("Close alert @positive @alert", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const response = await eventPage.closeAlert();
 
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Request backup during alert @positive @alert", async () => {
+    test("Request backup during alert @positive @alert", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const response = await eventPage.requestBackup();
 
       expect(response.status()).toBeLessThan(500);
@@ -95,7 +131,9 @@ test.describe("Alert Management API Tests", () => {
   });
 
   test.describe("Negative Tests", () => {
-    test("Change alert type without auth @negative @alert", async () => {
+    test("Change alert type without auth @negative @alert", async ({
+      eventPage,
+    }) => {
       eventPage.setAuthToken("");
       const alertData = TestDataFactory.getAlertData();
       const response = await eventPage.changeAlertType(alertData);
@@ -103,7 +141,13 @@ test.describe("Alert Management API Tests", () => {
       expect(response.ok()).toBeFalsy();
     });
 
-    test("Change alert type with invalid event type @negative @alert", async () => {
+    test("Change alert type with invalid event type @negative @alert", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const alertData = TestDataFactory.getAlertData({
         event_type_id: "999",
       });
@@ -112,14 +156,26 @@ test.describe("Alert Management API Tests", () => {
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Change alert type with invalid trigger @negative @alert", async () => {
+    test("Change alert type with invalid trigger @negative @alert", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const alertData = TestDataFactory.getAlertData({ type_trigger: "999" });
       const response = await eventPage.changeAlertType(alertData);
 
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Close alert without active alert @negative @alert", async () => {
+    test("Close alert without active alert @negative @alert", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const response = await eventPage.closeAlert();
 
       expect(response.status()).toBeLessThan(500);
@@ -127,7 +183,13 @@ test.describe("Alert Management API Tests", () => {
   });
 
   test.describe("Edge Cases", () => {
-    test("Trigger multiple alerts in succession @edge @alert", async () => {
+    test("Trigger multiple alerts in succession @edge @alert", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const alertData1 = TestDataFactory.getAlertData({ type_trigger: "1" });
       const alertData2 = TestDataFactory.getAlertData({ type_trigger: "2" });
 
@@ -138,7 +200,13 @@ test.describe("Alert Management API Tests", () => {
       expect(response2.status()).toBeLessThan(500);
     });
 
-    test("Change alert type with past timestamp @edge @alert", async () => {
+    test("Change alert type with past timestamp @edge @alert", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const pastDate = new Date();
       pastDate.setDate(pastDate.getDate() - 1);
       const alertData = TestDataFactory.getAlertData({
@@ -152,13 +220,25 @@ test.describe("Alert Management API Tests", () => {
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Get dispatch alert with specific ID @edge @alert", async () => {
+    test("Get dispatch alert with specific ID @edge @alert", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const response = await eventPage.getDispatchAlert("1");
 
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Dispatch guard - accept @edge @alert", async () => {
+    test("Dispatch guard - accept @edge @alert", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const dispatchData = {
         dispatch_id: "1",
         notes: "Accepted dispatch",
@@ -168,7 +248,13 @@ test.describe("Alert Management API Tests", () => {
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Dispatch guard - reject @edge @alert", async () => {
+    test("Dispatch guard - reject @edge @alert", async ({
+      eventPage,
+      authenticatedContext,
+    }) => {
+      const { token } = authenticatedContext;
+      if (token) eventPage.setAuthToken(token);
+
       const dispatchData = {
         dispatch_id: "1",
         notes: "Rejected dispatch",

@@ -1,13 +1,8 @@
-import { test, expect } from "@playwright/test";
-import { AuthPage } from "../../src/pages/auth.page";
-import { TestDataFactory } from "../../src/utils/test-data";
+import { test, expect } from "../../fixtures/testFixture";
+import { TestDataFactory } from "../../utils/test-data";
 
 test.describe("Authentication API Tests", () => {
-  let authPage: AuthPage;
-
-  test.beforeEach(async ({ request }) => {
-    authPage = new AuthPage(request);
-
+  test.beforeEach(async ({}) => {
     // Skip tests if API is not accessible or explicitly skipped
     test.skip(
       process.env.SKIP_API_TESTS === "true" ||
@@ -17,7 +12,9 @@ test.describe("Authentication API Tests", () => {
   });
 
   test.describe("Positive Tests", () => {
-    test("Login with valid credentials should succeed @positive @auth", async () => {
+    test("Login with valid credentials should succeed @positive @auth", async ({
+      authPage,
+    }) => {
       const credentials = TestDataFactory.getLoginCredentials();
       console.log("🔍 Testing login with credentials:", {
         username: credentials.username,
@@ -54,7 +51,9 @@ test.describe("Authentication API Tests", () => {
       }
     });
 
-    test("Login with username and password should return auth token @positive @auth", async () => {
+    test("Login with username and password should return auth token @positive @auth", async ({
+      authPage,
+    }) => {
       const credentials = TestDataFactory.getLoginCredentials();
       const response = await authPage.login(credentials);
 
@@ -67,7 +66,9 @@ test.describe("Authentication API Tests", () => {
       }
     });
 
-    test("Logout with valid token should succeed @positive @auth", async () => {
+    test("Logout with valid token should succeed @positive @auth", async ({
+      authPage,
+    }) => {
       // First login to get token
       const credentials = TestDataFactory.getLoginCredentials();
       const loginResponse = await authPage.login(credentials);
@@ -82,7 +83,9 @@ test.describe("Authentication API Tests", () => {
   });
 
   test.describe("Negative Tests", () => {
-    test("Login with invalid username should fail @negative @auth", async () => {
+    test("Login with invalid username should fail @negative @auth", async ({
+      authPage,
+    }) => {
       const credentials = TestDataFactory.getLoginCredentials({
         username: "invalid_user_12345",
       });
@@ -92,7 +95,9 @@ test.describe("Authentication API Tests", () => {
       expect(responseBody.success).toBeFalsy();
     });
 
-    test("Login with invalid password should fail @negative @auth", async () => {
+    test("Login with invalid password should fail @negative @auth", async ({
+      authPage,
+    }) => {
       const credentials = TestDataFactory.getLoginCredentials({
         password: "WrongPassword123!@#",
       });
@@ -102,7 +107,9 @@ test.describe("Authentication API Tests", () => {
       expect(responseBody.success).toBeFalsy();
     });
 
-    test("Login with empty username should fail @negative @auth", async () => {
+    test("Login with empty username should fail @negative @auth", async ({
+      authPage,
+    }) => {
       const credentials = TestDataFactory.getLoginCredentials({
         username: "",
       });
@@ -112,7 +119,9 @@ test.describe("Authentication API Tests", () => {
       expect(responseBody.success).toBeFalsy();
     });
 
-    test("Login with empty password should fail @negative @auth", async () => {
+    test("Login with empty password should fail @negative @auth", async ({
+      authPage,
+    }) => {
       const credentials = TestDataFactory.getLoginCredentials({
         password: "",
       });
@@ -122,12 +131,16 @@ test.describe("Authentication API Tests", () => {
       expect(responseBody.success).toBeFalsy();
     });
 
-    test("Logout without auth token should fail @negative @auth", async () => {
+    test("Logout without auth token should fail @negative @auth", async ({
+      authPage,
+    }) => {
       const response = await authPage.logout();
       expect(response.ok()).toBeFalsy();
     });
 
-    test("Logout with invalid auth token should fail @negative @auth", async () => {
+    test("Logout with invalid auth token should fail @negative @auth", async ({
+      authPage,
+    }) => {
       authPage.setAuthToken("invalid_token_12345");
       const response = await authPage.logout();
       expect(response.ok()).toBeFalsy();
@@ -135,7 +148,9 @@ test.describe("Authentication API Tests", () => {
   });
 
   test.describe("Edge Cases", () => {
-    test("Login with special characters in username @edge @auth", async () => {
+    test("Login with special characters in username @edge @auth", async ({
+      authPage,
+    }) => {
       const credentials = TestDataFactory.getLoginCredentials({
         username: "test_user@#$%",
       });
@@ -145,7 +160,9 @@ test.describe("Authentication API Tests", () => {
       expect(responseBody.success).toBeFalsy();
     });
 
-    test("Login with special characters in password @edge @auth", async () => {
+    test("Login with special characters in password @edge @auth", async ({
+      authPage,
+    }) => {
       const credentials = TestDataFactory.getLoginCredentials({
         password: "!@#$%^&*()_+-=[]{}|;:,.<>?",
       });
@@ -155,7 +172,7 @@ test.describe("Authentication API Tests", () => {
       expect(responseBody.success).toBeFalsy();
     });
 
-    test("Login with very long username @edge @auth", async () => {
+    test("Login with very long username @edge @auth", async ({ authPage }) => {
       const credentials = TestDataFactory.getLoginCredentials({
         username: "a".repeat(1000),
       });
@@ -165,7 +182,7 @@ test.describe("Authentication API Tests", () => {
       expect(responseBody.success).toBeFalsy();
     });
 
-    test("Login with null values @edge @auth", async () => {
+    test("Login with null values @edge @auth", async ({ authPage }) => {
       const response = await authPage.login({
         username: null as any,
         password: null as any,
@@ -177,7 +194,9 @@ test.describe("Authentication API Tests", () => {
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Login with missing required fields @edge @auth", async () => {
+    test("Login with missing required fields @edge @auth", async ({
+      authPage,
+    }) => {
       const response = await authPage.login({} as any);
       const responseBody = await authPage.safeJsonParse(response);
       expect(responseBody.success).toBeFalsy();

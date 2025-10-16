@@ -1,16 +1,11 @@
-import { test, expect } from "@playwright/test";
-import { UnauthorizedPage } from "../../src/pages/unauthorized.page";
-import { generateRandomEmail } from "../../src/utils/api-helper";
+import { test, expect } from "../../fixtures/testFixture";
+import { generateRandomEmail } from "../../utils/api-helper";
 
 test.describe("Password Recovery API Tests", () => {
-  let unauthorizedPage: UnauthorizedPage;
-
-  test.beforeEach(async ({ request }) => {
-    unauthorizedPage = new UnauthorizedPage(request);
-  });
-
   test.describe("Positive Tests", () => {
-    test("Reset password with valid email @positive @password", async () => {
+    test("Reset password with valid email @positive @password", async ({
+      unauthorizedPage,
+    }) => {
       const response = await unauthorizedPage.resetPassword("test@asd.com");
 
       expect(response.status()).toBeLessThan(500);
@@ -18,7 +13,9 @@ test.describe("Password Recovery API Tests", () => {
       expect(responseBody).toBeDefined();
     });
 
-    test("Credentials forgotten - forgot email @positive @password", async () => {
+    test("Credentials forgotten - forgot email @positive @password", async ({
+      unauthorizedPage,
+    }) => {
       const response = await unauthorizedPage.credentialsForgotten(
         "1",
         "test@asd.com"
@@ -27,7 +24,9 @@ test.describe("Password Recovery API Tests", () => {
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Credentials forgotten - forgot password @positive @password", async () => {
+    test("Credentials forgotten - forgot password @positive @password", async ({
+      unauthorizedPage,
+    }) => {
       const response = await unauthorizedPage.credentialsForgotten(
         "2",
         "test@asd.com"
@@ -36,7 +35,9 @@ test.describe("Password Recovery API Tests", () => {
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Credentials forgotten - forgot PIN @positive @password", async () => {
+    test("Credentials forgotten - forgot PIN @positive @password", async ({
+      unauthorizedPage,
+    }) => {
       const response = await unauthorizedPage.credentialsForgotten(
         "3",
         "test@asd.com"
@@ -47,7 +48,9 @@ test.describe("Password Recovery API Tests", () => {
   });
 
   test.describe("Negative Tests", () => {
-    test("Reset password with invalid email format @negative @password", async () => {
+    test("Reset password with invalid email format @negative @password", async ({
+      unauthorizedPage,
+    }) => {
       const response = await unauthorizedPage.resetPassword("invalid-email");
 
       const responseBody = await unauthorizedPage.safeJsonParse(response);
@@ -57,7 +60,9 @@ test.describe("Password Recovery API Tests", () => {
       expect(responseBody).toBeDefined();
     });
 
-    test("Reset password with non-existent email @negative @password", async () => {
+    test("Reset password with non-existent email @negative @password", async ({
+      unauthorizedPage,
+    }) => {
       const response = await unauthorizedPage.resetPassword(
         generateRandomEmail()
       );
@@ -65,7 +70,9 @@ test.describe("Password Recovery API Tests", () => {
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Reset password with empty email @negative @password", async () => {
+    test("Reset password with empty email @negative @password", async ({
+      unauthorizedPage,
+    }) => {
       const response = await unauthorizedPage.resetPassword("");
 
       const responseBody = await unauthorizedPage.safeJsonParse(response);
@@ -74,7 +81,9 @@ test.describe("Password Recovery API Tests", () => {
       expect(responseBody).toBeDefined();
     });
 
-    test("Credentials forgotten with invalid type @negative @password", async () => {
+    test("Credentials forgotten with invalid type @negative @password", async ({
+      unauthorizedPage,
+    }) => {
       const response = await unauthorizedPage.credentialsForgotten(
         "999",
         "test@asd.com"
@@ -86,7 +95,9 @@ test.describe("Password Recovery API Tests", () => {
       expect(responseBody).toBeDefined();
     });
 
-    test("Credentials forgotten with empty identifier @negative @password", async () => {
+    test("Credentials forgotten with empty identifier @negative @password", async ({
+      unauthorizedPage,
+    }) => {
       const response = await unauthorizedPage.credentialsForgotten("1", "");
 
       const responseBody = await unauthorizedPage.safeJsonParse(response);
@@ -97,7 +108,9 @@ test.describe("Password Recovery API Tests", () => {
   });
 
   test.describe("Edge Cases", () => {
-    test("Reset password with SQL injection @edge @password @security", async () => {
+    test("Reset password with SQL injection @edge @password @security", async ({
+      unauthorizedPage,
+    }) => {
       const response = await unauthorizedPage.resetPassword(
         "admin@test.com' OR '1'='1"
       );
@@ -105,14 +118,18 @@ test.describe("Password Recovery API Tests", () => {
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Reset password with very long email @edge @password", async () => {
+    test("Reset password with very long email @edge @password", async ({
+      unauthorizedPage,
+    }) => {
       const longEmail = "a".repeat(200) + "@test.com";
       const response = await unauthorizedPage.resetPassword(longEmail);
 
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Credentials forgotten with mobile number identifier @edge @password", async () => {
+    test("Credentials forgotten with mobile number identifier @edge @password", async ({
+      unauthorizedPage,
+    }) => {
       const response = await unauthorizedPage.credentialsForgotten(
         "2",
         "+380634534234"
@@ -121,7 +138,9 @@ test.describe("Password Recovery API Tests", () => {
       expect(response.status()).toBeLessThan(500);
     });
 
-    test("Reset password multiple times in succession @edge @password", async () => {
+    test("Reset password multiple times in succession @edge @password", async ({
+      unauthorizedPage,
+    }) => {
       const email = "test@asd.com";
 
       const response1 = await unauthorizedPage.resetPassword(email);

@@ -13,15 +13,15 @@
     "rootDir": "./",
     "baseUrl": ".",
     "paths": {
-      "@pages/*": ["src/pages/*"],
+      "@pages/*": ["pages/*"],
       "@tests/*": ["tests/*"],
-      "@utils/*": ["src/utils/*"],
-      "@config/*": ["src/config/*"],
-      "@types/*": ["src/types/*"]
+      "@utils/*": ["utils/*"],
+      "@fixtures/*": ["fixtures/*"],
+      "@types/*": ["types/*"]
     },
     "types": ["node", "@playwright/test"]
   },
-  "include": ["src/**/*", "tests/**/*"],
+  "include": ["pages/**/*", "utils/**/*", "types/**/*", "fixtures/**/*", "tests/**/*"],
   "exclude": ["node_modules", "dist", "allure-results", "allure-report"]
 }
 

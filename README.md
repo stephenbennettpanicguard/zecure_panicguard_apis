@@ -1,353 +1,358 @@
 # PG21 Mobile API Testing Framework
 
-A comprehensive Playwright TypeScript API testing framework for PG21 Mobile API with Allure reporting and CI/CD integration.
+A modern, scalable API testing framework built with **Playwright** and **TypeScript** following the **Page Object Model (POM)** design pattern.
 
-## 📋 Table of Contents
+## 🚀 Features
 
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Running Tests](#running-tests)
-- [Test Reports](#test-reports)
-- [CI/CD](#cicd)
-- [Test Coverage](#test-coverage)
+- **TypeScript**: Full type safety and modern JavaScript features
+- **Playwright**: Fast, reliable API testing framework
+- **Page Object Model**: Clean, maintainable code architecture
+- **Custom Fixtures**: Reusable test components and authenticated sessions
+- **Environment Variables**: Secure configuration management with dotenv
+- **Comprehensive Reporting**: HTML reports, Allure integration
+- **Parallel Execution**: Fast test runs with configurable workers
+- **CI/CD Ready**: GitHub Actions integration
 
-## ✨ Features
-
-- ✅ Comprehensive API test coverage (positive, negative, and edge cases)
-- ✅ Page Object Model (POM) design pattern
-- ✅ TypeScript for type safety
-- ✅ Allure reporting with detailed test results
-- ✅ GitHub Actions CI/CD with hourly automated runs
-- ✅ GitHub Pages deployment for test reports
-- ✅ Environment-based configuration
-- ✅ Parallel test execution
-- ✅ Automatic retries on failure
-
-## 📁 Project Structure
+## 🗂️ Project Structure
 
 ```
-zecure_panicguard_APIs/
-├── src/
-│   ├── pages/              # Page Object Models
-│   │   ├── auth.page.ts
-│   │   ├── user.page.ts
-│   │   ├── event.page.ts
-│   │   ├── unauthorized.page.ts
-│   │   ├── emergency-contacts.page.ts
-│   │   ├── user-places.page.ts
-│   │   ├── documents.page.ts
-│   │   ├── invite-users.page.ts
-│   │   ├── reports.page.ts
-│   │   ├── misc.page.ts
-│   │   └── base.page.ts
-│   ├── types/              # TypeScript type definitions
-│   │   └── api.types.ts
-│   └── utils/              # Helper functions
-│       ├── api-helper.ts
-│       └── test-data.ts
-├── tests/                  # Test specifications
-│   ├── auth/
-│   ├── user/
-│   ├── event/
-│   ├── unauthorized/
-│   ├── user-management/
-│   └── reports/
-├── .github/
-│   └── workflows/          # CI/CD workflows
-│       └── api-tests.yml
-├── playwright.config.ts    # Playwright configuration
-├── tsconfig.json          # TypeScript configuration
-├── package.json
-└── README.md
+📦 pg21-mobile-api-tests
+├── 📄 package.json                # Dependencies and scripts
+├── 📄 tsconfig.json               # TypeScript configuration
+├── 📄 playwright.config.ts        # Playwright configuration
+├── 📄 .env                        # Environment variables (create from .env.example)
+├── 📄 .env.example                # Environment variables template
+├── 📄 README.md                   # This file
+│
+├── 📁 tests/                      # Test specifications
+│   ├── 📁 auth/                   # Authentication tests
+│   ├── 📁 event/                  # Event management tests
+│   ├── 📁 user/                   # User management tests
+│   ├── 📁 user-management/        # User places & emergency contacts
+│   ├── 📁 unauthorized/           # Public endpoint tests
+│   ├── 📁 reports/                # Reporting tests
+│   └── 📄 example.spec.ts         # Example test file showing new structure
+│
+├── 📁 pages/                      # Page Object Model classes
+│   ├── 📄 base.page.ts            # Base page with common methods
+│   ├── 📄 auth.page.ts            # Authentication page methods
+│   ├── 📄 event.page.ts           # Event management methods
+│   ├── 📄 user.page.ts            # User profile methods
+│   ├── 📄 reports.page.ts         # Reports methods
+│   ├── 📄 unauthorized.page.ts    # Public endpoints methods
+│   ├── 📄 emergency-contacts.page.ts  # Emergency contacts methods
+│   └── 📄 user-places.page.ts     # User places methods
+│
+├── 📁 fixtures/                   # Custom test fixtures
+│   └── 📄 testFixture.ts          # Test fixtures with page objects
+│
+├── 📁 utils/                      # Utility functions and helpers
+│   ├── 📄 env.ts                  # Environment configuration
+│   ├── 📄 helpers.ts              # Test helper functions
+│   ├── 📄 api-helper.ts           # API utility functions
+│   ├── 📄 test-data.ts            # Test data factory
+│   ├── 📄 check-api-connectivity.js  # API connectivity check
+│   ├── 📄 credential-manager.js   # Credential management
+│   └── 📄 global-setup.js         # Global test setup
+│
+├── 📁 types/                      # TypeScript type definitions
+│   └── 📄 api.types.ts            # API response types
+│
+├── 📁 docs/                       # Documentation
+│   ├── 📄 PROJECT_SUMMARY.md      # Project summary
+│   ├── 📄 README.md               # Original README
+│   ├── 📄 GITHUB_SETUP_INSTRUCTIONS.md
+│   ├── 📄 GITHUB_SECRETS_SETUP.md
+│   └── 📄 TRIGGER_WORKFLOW.md
+│
+├── 📁 reports/                    # Test reports (auto-generated)
+├── 📁 screenshots/                # Screenshots for failed tests
+├── 📁 allure-results/             # Allure test results
+└── 📁 allure-report/              # Allure HTML reports
 ```
 
-## 🔧 Prerequisites
+## 🛠️ Setup & Installation
 
-- Node.js (v18 or higher)
-- npm or yarn
-- Git
+### Prerequisites
 
-## 📦 Installation
+- **Node.js** (v16 or higher)
+- **npm** or **yarn**
 
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd zecure_panicguard_APIs
-```
+### Installation
 
-2. Install dependencies:
-```bash
-npm install
-```
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd zecure_panicguard_apis
+   ```
 
-3. Install Playwright browsers:
-```bash
-npx playwright install
-```
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-4. Create environment file:
-```bash
-cp .env.example .env
-```
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your actual configuration
+   ```
 
-5. Update `.env` file with your credentials:
-```env
-BASE_URL=https://zecure.panicguard.center
-API_BASE_URL=https://zecure.panicguard.center/api
-TEST_USERNAME=your_username
-TEST_PASSWORD=your_password
-```
+4. **Install Playwright browsers** (if needed)
+   ```bash
+   npx playwright install
+   ```
 
 ## ⚙️ Configuration
 
-### Environment Variables
+### Environment Variables (.env)
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `BASE_URL` | Base URL of the application | `https://zecure.panicguard.center` |
-| `API_BASE_URL` | API base URL | `https://zecure.panicguard.center/api` |
-| `TEST_USERNAME` | Test user username | `durban` |
-| `TEST_PASSWORD` | Test user password | - |
-| `HEADLESS` | Run tests in headless mode | `true` |
-| `TIMEOUT` | Default test timeout (ms) | `30000` |
-| `RETRIES` | Number of retries on failure | `1` |
+```env
+# API Configuration
+BASE_URL=https://zecure.panicguard.center
+API_BASE_URL=https://zecure.panicguard.center/api
 
-### Playwright Configuration
+# Test Configuration
+TIMEOUT=30000
+RETRIES=1
+CI=false
 
-Edit `playwright.config.ts` to customize:
-- Test directory
-- Parallel execution
-- Retries
-- Reporters
-- Base URL
-- Timeout settings
+# Authentication Credentials
+LOGIN_USERNAME=your_username_here
+LOGIN_PASSWORD=your_password_here
+LOGIN_PIN=your_pin_here
 
-## 🚀 Running Tests
+# Test Control
+SKIP_API_TESTS=false
+API_SKIP_TESTS=false
+```
 
-### Run all tests:
+## 🏃‍♂️ Running Tests
+
+### Basic Commands
+
 ```bash
+# Run all tests
 npm test
-```
 
-### Run tests in UI mode:
-```bash
+# Run tests with UI mode
 npm run test:ui
-```
 
-### Run tests in headed mode:
-```bash
+# Run tests in headed mode (visible browser)
 npm run test:headed
-```
 
-### Run tests in debug mode:
-```bash
+# Run tests in debug mode
 npm run test:debug
-```
 
-### Run specific test file:
-```bash
-npx playwright test tests/auth/auth.spec.ts
-```
+# Show test report
+npm run test:report
 
-### Run tests by tag:
-```bash
-npx playwright test --grep @positive
-npx playwright test --grep @negative
-npx playwright test --grep @edge
-npx playwright test --grep @auth
-```
+# Skip API tests
+npm run test:skip-api
 
-## 📊 Test Reports
+# Run tests in parallel
+npm run test:parallel
+
+# Run tests serially
+npm run test:serial
+```
 
 ### Allure Reports
 
-Generate and view Allure report:
 ```bash
+# Generate Allure report
 npm run allure:generate
-npm run allure:open
-```
 
-Or serve directly:
-```bash
+# Open Allure report
+npm run allure:open
+
+# Serve Allure report
 npm run allure:serve
 ```
 
-### Playwright HTML Report
+### Credential Management
 
-View Playwright's built-in report:
 ```bash
-npm run test:report
+# Check credentials
+npm run credentials:check
+
+# Update credentials
+npm run credentials:update
+
+# Validate credentials
+npm run credentials:validate
+
+# Update token
+npm run token:update
+
+# Refresh token
+npm run token:refresh
 ```
 
-### Report Features
+### Maintenance
 
-- Test execution timeline
-- Request/Response details
-- Screenshots on failure
-- Test categorization
-- Environment information
-- Historical trends
-
-## 🔄 CI/CD
-
-### GitHub Actions Workflow
-
-The project includes a GitHub Actions workflow that:
-- Runs tests every hour (cron schedule)
-- Runs on push to main branch
-- Runs on pull requests
-- Generates Allure reports
-- Deploys reports to GitHub Pages
-
-### Viewing CI/CD Reports
-
-Test reports are automatically deployed to GitHub Pages:
-```
-https://<username>.github.io/<repository-name>/
-```
-
-### Manual Workflow Trigger
-
-You can manually trigger the workflow from GitHub Actions tab.
-
-## 🧪 Test Coverage
-
-### API Endpoints Covered
-
-#### Authentication
-- ✅ Login
-- ✅ Logout
-
-#### Unauthorized Endpoints
-- ✅ Get App Settings
-- ✅ Reset Password
-- ✅ Credentials Forgotten
-- ✅ Email Taken Check
-- ✅ User Registration
-- ✅ Mobile Number Verification
-- ✅ Coupon Code Validation
-
-#### User Management
-- ✅ Get/Update Profile
-- ✅ Device Management
-- ✅ Subscription Management
-- ✅ Account Deletion
-- ✅ Password Update
-- ✅ Mobile Number Update
-
-#### Events
-- ✅ Location Tracking
-- ✅ Alert Management
-- ✅ Device State
-- ✅ Meetings
-- ✅ Journeys
-- ✅ Check-ins
-- ✅ Shared Locations
-- ✅ Chat Channels
-
-#### Emergency Contacts
-- ✅ Contact Groups CRUD
-- ✅ Emergency Contacts CRUD
-
-#### User Places
-- ✅ Places CRUD
-
-#### Documents
-- ✅ Document Management
-
-#### Reports
-- ✅ Report Submission
-- ✅ Media Upload
-
-### Test Types
-
-- **Positive Tests**: Verify happy path scenarios
-- **Negative Tests**: Verify error handling and validation
-- **Edge Cases**: Verify boundary conditions and special scenarios
-- **Security Tests**: SQL injection, XSS, etc.
-
-## 🏷️ Test Tags
-
-Tests are tagged for easy filtering:
-
-- `@positive` - Positive test scenarios
-- `@negative` - Negative test scenarios
-- `@edge` - Edge case scenarios
-- `@security` - Security-related tests
-- `@auth` - Authentication tests
-- `@user-profile` - User profile tests
-- `@location` - Location tracking tests
-- `@alert` - Alert management tests
-- `@meeting` - Meeting tests
-- `@journey` - Journey tests
-- `@emergency-contacts` - Emergency contact tests
-- `@reports` - Report tests
-
-## 🔍 Debugging
-
-### Debug specific test:
 ```bash
-npx playwright test tests/auth/auth.spec.ts --debug
+# Clean all reports and results
+npm run clean
+
+# Clean install (remove node_modules and reinstall)
+npm run clean:install
 ```
 
-### Run with trace:
-```bash
-npx playwright test --trace on
-```
+## 📝 Writing Tests
 
-### View trace:
-```bash
-npx playwright show-trace trace.zip
-```
+### Using the New Fixture System
 
-## 📝 Writing New Tests
-
-1. Create a new test file in appropriate directory
-2. Import required page objects and utilities
-3. Set up authentication if needed
-4. Write test cases following the pattern:
-   - Positive tests
-   - Negative tests
-   - Edge cases
-5. Add appropriate tags
-6. Use descriptive test names
-
-Example:
 ```typescript
-import { test, expect } from "@playwright/test";
-import { YourPage } from "../../src/pages/your.page";
+import { test, expect } from "../fixtures/testFixture";
+import { TestDataFactory } from "../utils/test-data";
 
-test.describe("Your Feature Tests", () => {
-  test.describe("Positive Tests", () => {
-    test("Should do something @positive @your-tag", async () => {
-      // Test implementation
-    });
+test.describe("My API Tests", () => {
+  test("Example test with auth fixture", async ({ authPage }) => {
+    const credentials = TestDataFactory.getLoginCredentials();
+    const response = await authPage.login(credentials);
+    expect(response.status()).toBe(200);
+  });
+
+  test("Example with authenticated context", async ({ authenticatedContext }) => {
+    const { token, request } = authenticatedContext;
+    
+    if (token) {
+      const response = await request.get("/user/profile", {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      expect(response.ok()).toBeTruthy();
+    }
   });
 });
 ```
 
+### Available Fixtures
+
+- **`authPage`**: Authentication operations
+- **`eventPage`**: Event and alert management
+- **`userPage`**: User profile operations
+- **`reportsPage`**: Report submission and retrieval
+- **`unauthorizedPage`**: Public endpoints
+- **`emergencyContactsPage`**: Emergency contact management
+- **`userPlacesPage`**: User places management
+- **`authenticatedContext`**: Pre-authenticated session with token
+
+### Page Object Example
+
+```typescript
+// pages/example.page.ts
+import { BasePage } from "./base.page";
+import { APIRequestContext } from "@playwright/test";
+
+export class ExamplePage extends BasePage {
+  constructor(request: APIRequestContext) {
+    super(request);
+  }
+
+  async getExample() {
+    return this.request.get(`${this.baseURL}/example`);
+  }
+
+  async createExample(data: any) {
+    return this.request.post(`${this.baseURL}/example`, {
+      data: data,
+      headers: this.getAuthHeaders(),
+    });
+  }
+}
+```
+
+## 🧪 Test Categories
+
+### Test Tags
+
+- **`@positive`**: Happy path scenarios
+- **`@negative`**: Error handling scenarios  
+- **`@edge`**: Edge cases and boundary conditions
+- **`@auth`**: Authentication tests
+- **`@alert`**: Alert management tests
+- **`@location`**: Location tracking tests
+- **`@user-profile`**: User profile tests
+- **`@reports`**: Reporting tests
+
+### Running Specific Tests
+
+```bash
+# Run tests by tag
+npx playwright test --grep "@positive"
+npx playwright test --grep "@auth"
+
+# Run specific test file
+npx playwright test tests/auth/auth.spec.ts
+
+# Run specific test suite
+npx playwright test --grep "Authentication API Tests"
+```
+
+## 🔧 Development
+
+### Adding New Tests
+
+1. Create test file in appropriate `tests/` subdirectory
+2. Import fixtures: `import { test, expect } from "../fixtures/testFixture";`
+3. Use page objects from fixtures
+4. Add appropriate test tags
+5. Follow existing naming conventions
+
+### Adding New Page Objects
+
+1. Create new page class extending `BasePage`
+2. Add methods for API endpoints
+3. Export from appropriate location
+4. Add to fixtures if needed
+
+### Type Safety
+
+All API responses and request data should use types from `types/api.types.ts`:
+
+```typescript
+import { ApiResponse, LoginCredentials } from "../types/api.types";
+```
+
+## 📊 Reporting
+
+### HTML Reports
+- Generated automatically after test runs
+- View with: `npm run test:report`
+
+### Allure Reports  
+- Detailed test analytics and trends
+- Generate with: `npm run allure:generate`
+- View with: `npm run allure:open`
+
+### Screenshots
+- Automatically captured for failed tests
+- Stored in `screenshots/` directory
+
+## 🚀 CI/CD Integration
+
+The framework is configured for GitHub Actions with:
+- Parallel test execution
+- Artifact uploads (reports, screenshots)
+- Environment-specific configurations
+- Slack/email notifications
+
+See `docs/GITHUB_SETUP_INSTRUCTIONS.md` for detailed CI/CD setup.
+
 ## 🤝 Contributing
 
-1. Create a feature branch
-2. Make your changes
-3. Add tests for new features
-4. Ensure all tests pass
-5. Submit a pull request
+1. Follow the existing code structure and patterns
+2. Add appropriate test tags and documentation
+3. Ensure all tests pass locally before submitting
+4. Update this README if adding new features
 
-## 📄 License
+## 📞 Support
 
-ISC
+For questions or issues:
+1. Check existing documentation in `docs/`
+2. Review test examples in `tests/example.spec.ts`
+3. Contact the development team
 
-## 👨‍💻 Author
+---
 
-Stephen Bennett
-
-## 🔗 Links
-
-- [Playwright Documentation](https://playwright.dev/)
-- [Allure Report Documentation](https://docs.qameta.io/allure/)
-- [TypeScript Documentation](https://www.typescriptlang.org/)
-
+**Built with ❤️ using Playwright + TypeScript**
