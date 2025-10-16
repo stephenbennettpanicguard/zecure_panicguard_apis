@@ -14,17 +14,17 @@ test.describe("User Profile API Tests", () => {
     console.log("🔐 Attempting login with credentials:", {
       username: credentials.username,
       hasPassword: !!credentials.password,
-      hasPin: !!credentials.pin
+      hasPin: !!credentials.pin,
     });
-    
+
     const loginResponse = await authPage.login(credentials);
     const loginBody = await authPage.safeJsonParse(loginResponse);
-    
+
     console.log("🔐 Login response:", {
       success: loginBody.success,
       hasToken: !!loginBody.data?.token,
       status: loginResponse.status(),
-      fullResponse: loginBody
+      fullResponse: loginBody,
     });
 
     if (loginBody.success && loginBody.data?.token) {
@@ -50,7 +50,7 @@ test.describe("User Profile API Tests", () => {
       if (!authToken) {
         test.skip("Skipping test - no authentication token available");
       }
-      
+
       const response = await userPage.getProfile();
       expect(response.ok()).toBeTruthy();
       const responseBody = await userPage.safeJsonParse(response);
@@ -91,7 +91,7 @@ test.describe("User Profile API Tests", () => {
       if (!authToken) {
         test.skip("Skipping test - no authentication token available");
       }
-      
+
       const response = await userPage.getAppCache();
       expect(response.ok()).toBeTruthy();
     });
@@ -170,7 +170,7 @@ test.describe("User Profile API Tests", () => {
       if (!authToken) {
         test.skip("Skipping test - no authentication token available");
       }
-      
+
       const response = await userPage.getAppSettings();
       expect(response.ok()).toBeTruthy();
     });

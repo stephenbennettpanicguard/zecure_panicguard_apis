@@ -36,7 +36,7 @@ test.describe("Emergency Contacts API Tests", () => {
       if (!authToken) {
         test.skip("Skipping test - no authentication token available");
       }
-      
+
       const response = await emergencyContactsPage.getEmergencyContactGroups();
       expect(response.ok()).toBeTruthy();
       const responseBody = await emergencyContactsPage.safeJsonParse(response);
@@ -83,7 +83,7 @@ test.describe("Emergency Contacts API Tests", () => {
       if (!authToken) {
         test.skip("Skipping test - no authentication token available");
       }
-      
+
       const response = await emergencyContactsPage.getEmergencyContacts();
       expect(response.ok()).toBeTruthy();
       const responseBody = await emergencyContactsPage.safeJsonParse(response);
