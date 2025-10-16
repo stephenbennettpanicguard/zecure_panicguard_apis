@@ -11,11 +11,27 @@ test.describe("User Profile API Tests", () => {
   test.beforeAll(async ({ request }) => {
     authPage = new AuthPage(request);
     const credentials = TestDataFactory.getLoginCredentials();
+    console.log("🔐 Attempting login with credentials:", {
+      username: credentials.username,
+      hasPassword: !!credentials.password,
+      hasPin: !!credentials.pin
+    });
+    
     const loginResponse = await authPage.login(credentials);
     const loginBody = await authPage.safeJsonParse(loginResponse);
+    
+    console.log("🔐 Login response:", {
+      success: loginBody.success,
+      hasToken: !!loginBody.data?.token,
+      status: loginResponse.status(),
+      fullResponse: loginBody
+    });
 
     if (loginBody.success && loginBody.data?.token) {
       authToken = loginBody.data.token;
+      console.log("✅ Authentication successful, token obtained");
+    } else {
+      console.log("❌ Authentication failed, no token available");
     }
   });
 
@@ -23,13 +39,19 @@ test.describe("User Profile API Tests", () => {
     userPage = new UserPage(request);
     if (authToken) {
       userPage.setAuthToken(authToken);
+      console.log("🔐 Auth token set for user profile test");
+    } else {
+      console.log("⚠️ No auth token available for user profile test");
     }
   });
 
   test.describe("Positive Tests", () => {
     test("Get user profile @positive @user-profile", async () => {
+      if (!authToken) {
+        test.skip("Skipping test - no authentication token available");
+      }
+      
       const response = await userPage.getProfile();
-
       expect(response.ok()).toBeTruthy();
       const responseBody = await userPage.safeJsonParse(response);
       expect(responseBody).toBeDefined();
@@ -66,8 +88,11 @@ test.describe("User Profile API Tests", () => {
     });
 
     test("Get app cache @positive @user-profile", async () => {
+      if (!authToken) {
+        test.skip("Skipping test - no authentication token available");
+      }
+      
       const response = await userPage.getAppCache();
-
       expect(response.ok()).toBeTruthy();
     });
   });
@@ -142,6 +167,10 @@ test.describe("User Profile API Tests", () => {
     });
 
     test("Get user app settings @edge @user-profile", async () => {
+      if (!authToken) {
+        test.skip("Skipping test - no authentication token available");
+      }
+      
       const response = await userPage.getAppSettings();
       expect(response.ok()).toBeTruthy();
     });

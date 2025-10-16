@@ -6,6 +6,9 @@ export class ApiHelper {
   private baseURL: string;
 
   constructor(request: APIRequestContext, baseURL?: string) {
+    if (!request) {
+      throw new Error("ApiHelper: Request context is required but was undefined/null");
+    }
     this.request = request;
     this.baseURL =
       baseURL ||
@@ -187,6 +190,12 @@ export class ApiHelper {
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : String(error);
+      
+      // Provide more context for common errors
+      if (errorMessage.includes("Cannot read properties of undefined")) {
+        throw new Error(`POST request failed for ${endpoint}: Request context is not properly initialized. This usually indicates a test setup issue. Original error: ${errorMessage}`);
+      }
+      
       throw new Error(`POST request failed for ${endpoint}: ${errorMessage}`);
     }
   }

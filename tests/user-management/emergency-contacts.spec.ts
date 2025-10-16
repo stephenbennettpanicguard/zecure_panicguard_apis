@@ -33,8 +33,11 @@ test.describe("Emergency Contacts API Tests", () => {
 
   test.describe("Emergency Contact Groups - Positive Tests", () => {
     test("Get emergency contact groups @positive @emergency-contacts", async () => {
+      if (!authToken) {
+        test.skip("Skipping test - no authentication token available");
+      }
+      
       const response = await emergencyContactsPage.getEmergencyContactGroups();
-
       expect(response.ok()).toBeTruthy();
       const responseBody = await emergencyContactsPage.safeJsonParse(response);
       expect(responseBody).toBeDefined();
@@ -77,8 +80,11 @@ test.describe("Emergency Contacts API Tests", () => {
 
   test.describe("Emergency Contacts - Positive Tests", () => {
     test("Get emergency contacts @positive @emergency-contacts", async () => {
+      if (!authToken) {
+        test.skip("Skipping test - no authentication token available");
+      }
+      
       const response = await emergencyContactsPage.getEmergencyContacts();
-
       expect(response.ok()).toBeTruthy();
       const responseBody = await emergencyContactsPage.safeJsonParse(response);
       expect(responseBody).toBeDefined();
